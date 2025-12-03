@@ -51,7 +51,6 @@ export default function CrystalBallPlugin(containerElement, animationSettings = 
     // Calculate text size based on smallest circle
     const textSize = Math.max(16, (sizes.circle3 / 500) * (typeof settings.textSize === "number" ? settings.textSize : 37));
 
-    console.log(textSize);
 
     return { sizes, textSize, containerWidth, containerHeight };
   };
@@ -61,7 +60,6 @@ export default function CrystalBallPlugin(containerElement, animationSettings = 
     // Calculate responsive sizes
     const sizeData = calculateSizes();
     if (!sizeData) {
-      console.error("CrystalBall: Could not calculate container sizes");
       return null;
     }
 
@@ -74,7 +72,6 @@ export default function CrystalBallPlugin(containerElement, animationSettings = 
     const parent = container.parentElement;
 
     if (!parent) {
-      console.error("CrystalBall: Canvas element must have a parent element");
       return null;
     }
 
@@ -305,7 +302,6 @@ export default function CrystalBallPlugin(containerElement, animationSettings = 
   const initializeCrystalBall = (containerElement, animationSettings = {}) => {
     // Check if container exists
     if (!containerElement) {
-      console.error("CrystalBall: Container element is required");
       return;
     }
 
@@ -316,7 +312,6 @@ export default function CrystalBallPlugin(containerElement, animationSettings = 
 
     // Ensure container is in the DOM
     if (!container.parentElement) {
-      console.error("CrystalBall: Canvas element must be mounted in the DOM");
       return;
     }
 
@@ -324,7 +319,6 @@ export default function CrystalBallPlugin(containerElement, animationSettings = 
       // For this animation, we'll create a div alongside the canvas and inject HTML/CSS
       createCrystalBallHTML();
     } catch (error) {
-      console.error("CrystalBall: Error initializing animation", error);
     }
   };
 
