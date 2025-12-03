@@ -15,7 +15,7 @@
 
 Build beautiful, fast, and maintainable websites with our collection of carefully crafted React components.
 
-[📖 Documentation](#-components) • [⚡ Quick Start](#-quick-start) • [💡 Examples](#-examples) • [🐛 Issues](https://github.com/innovista/ui-react-nextjs/issues)
+[📖 Documentation](#-components) • [⚡ Quick Start](#-quick-start) • [💡 Examples](#-examples) • [🐛 Issues](https://github.com/salamehDotDev/InnoVista-UI)
 
 </div>
 
@@ -318,7 +318,6 @@ function CustomStyled() {
 
 <br />
 
-
 ## ⚙️ Requirements
 
 | Package       | Version                |
@@ -331,9 +330,6 @@ function CustomStyled() {
 <br />
 
 ## 🤝 Contributing
-
-
-
 
 <br />
 
@@ -348,7 +344,7 @@ This project is licensed under the **ISC License**.
 **Abdulrahman Salameh**
 
 - 📧 Email: [abdulrahman.salameh5@gmail.com](mailto:abdulrahman.salameh5@gmail.com)
-- 🐙 GitHub: [@salamehDotDev](https://github.com/salamehDotDev)
+- 🐙 GitHub: [@salamehDotDev](https://github.com/salamehDotDev/)
 
 <br />
 
@@ -360,7 +356,7 @@ This project is licensed under the **ISC License**.
 
 [![Star on GitHub](https://img.shields.io/github/stars/innovista/ui-react-nextjs?style=social)](https://github.com/innovista/ui-react-nextjs)
 
-[Report Bug](https://github.com/innovista/ui-react-nextjs/issues) • [Request Feature](https://github.com/innovista/ui-react-nextjs/issues) • [Discussions](https://github.com/innovista/ui-react-nextjs/discussions)
+[Report Bug](https://github.com/salamehDotDev/InnoVista-UI) • [Request Feature](https://github.com/salamehDotDev/InnoVista-UI) 
 
 **If this project helps you, please consider giving it a ⭐!**
 
