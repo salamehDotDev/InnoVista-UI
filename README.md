@@ -1,71 +1,78 @@
-# @innovista/ui
-
 <div align="center">
 
-**A modern React UI component library built with TypeScript**
+# @innovista/ui
 
-[![npm version](https://img.shields.io/npm/v/@innovista/ui.svg?style=flat-square)](https://www.npmjs.com/package/@innovista/ui)
-[![npm downloads](https://img.shields.io/npm/dm/@innovista/ui.svg?style=flat-square)](https://www.npmjs.com/package/@innovista/ui)
-[![License](https://img.shields.io/npm/l/@innovista/ui.svg?style=flat-square)](LICENSE)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue.svg?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+![Innovista UI Banner](https://img.shields.io/badge/Innovista-UI-6366f1?style=for-the-badge&logo=react&logoColor=white)
+
+### A modern React UI component library built with TypeScript
+
+[![npm version](https://img.shields.io/npm/v/@innovista/ui?style=flat-square&color=blue&logo=npm)](https://www.npmjs.com/package/@innovista/ui)
+[![npm downloads](https://img.shields.io/npm/dm/@innovista/ui?style=flat-square&color=green)](https://www.npmjs.com/package/@innovista/ui)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/@innovista/ui?style=flat-square&color=orange)](https://bundlephobia.com/package/@innovista/ui)
+[![license](https://img.shields.io/npm/l/@innovista/ui?style=flat-square&color=red)](LICENSE)
+[![typescript](https://img.shields.io/badge/TypeScript-5.9-blue?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![react](https://img.shields.io/badge/React-18+-61dafb?style=flat-square&logo=react&logoColor=black)](https://reactjs.org/)
 
 Build beautiful, fast, and maintainable websites with our collection of carefully crafted React components.
 
+[📖 Documentation](#-components) • [⚡ Quick Start](#-quick-start) • [💡 Examples](#-examples) • [🐛 Issues](https://github.com/innovista/ui-react-nextjs/issues)
+
 </div>
 
----
-
-## 📋 Table of Contents
-
-- [Features](#-features)
-- [Installation](#-installation)
-- [Quick Start](#-quick-start)
-- [Components](#-components)
-  - [CrystalBall](#crystalball)
-- [TypeScript Support](#-typescript-support)
-- [Requirements](#-requirements)
-- [Examples](#-examples)
-- [Contributing](#-contributing)
-- [License](#-license)
+<br />
 
 ---
 
 ## ✨ Features
 
-- 🎨 **Beautiful Components** - Carefully designed UI components
-- ⚡️ **Performance Optimized** - Built with modern best practices
-- 📦 **Tree-Shakeable** - Import only what you need
-- 🔷 **TypeScript** - Full TypeScript support with type definitions
-- 🎯 **Framework Compatible** - Works with React, Next.js, and more
-- 🛠️ **Customizable** - Highly configurable components
-- 📱 **Responsive** - Mobile-first responsive design
+<table>
+  <tr>
+    <td align="center">🎨<br /><b>Beautiful</b><br />Carefully designed components</td>
+    <td align="center">⚡<br /><b>Fast</b><br />Optimized performance</td>
+    <td align="center">📦<br /><b>Lightweight</b><br />Tree-shakeable imports</td>
+  </tr>
+  <tr>
+    <td align="center">🔷<br /><b>TypeScript</b><br />Full type support</td>
+    <td align="center">🎯<br /><b>Flexible</b><br />Works everywhere</td>
+    <td align="center">🛠️<br /><b>Customizable</b><br />Highly configurable</td>
+  </tr>
+</table>
 
----
+<br />
 
 ## 📦 Installation
 
-Install the package using npm or yarn:
+Install the package using your favorite package manager:
 
 ```bash
-# Using npm
+# npm
 npm install @innovista/ui
 
-# Using yarn
+# yarn
 yarn add @innovista/ui
 
-# Using pnpm
+# pnpm
 pnpm add @innovista/ui
 ```
 
-> **Note for PowerShell users:** Use quotes when installing:
->
-> ```powershell
-> npm install "@innovista/ui"
-> ```
+<details>
+<summary>💡 Note for PowerShell users</summary>
 
----
+<br />
+
+Use quotes when installing scoped packages:
+
+```powershell
+npm install "@innovista/ui"
+```
+
+</details>
+
+<br />
 
 ## 🚀 Quick Start
+
+Get up and running in less than a minute:
 
 ```tsx
 import { CrystalBall } from "@innovista/ui";
@@ -96,15 +103,69 @@ function App() {
 }
 ```
 
----
+🎉 **That's it!** You're ready to build amazing UIs.
+
+<br />
 
 ## 🧩 Components
 
 ### CrystalBall
 
-An animated crystal ball background component with customizable styles and smooth animations. Perfect for creating eye-catching hero sections and landing pages.
+> An animated crystal ball background component with customizable styles and smooth animations. Perfect for creating eye-catching hero sections and landing pages.
 
-#### Basic Usage
+💡 **Pro Tip:** When you provide `children`, text rendering is automatically disabled to avoid conflicts.
+
+<br />
+
+#### 📋 Props
+
+| Prop            | Type                                 | Default      | Description                         |
+| --------------- | ------------------------------------ | ------------ | ----------------------------------- |
+| `width`         | `string \| number \| "auto" \| null` | `"auto"`     | Width of the component              |
+| `height`        | `string \| number \| "auto" \| null` | `"auto"`     | Height of the component             |
+| `styleSettings` | `StyleSettings`                      | **Required** | Animation and styling configuration |
+| `children`      | `React.ReactNode`                    | -            | Content to display over animation   |
+
+<br />
+
+<details>
+<summary>📝 <b>StyleSettings Interface</b></summary>
+
+<br />
+
+```typescript
+interface StyleSettings {
+  // Background Configuration
+  backgroundColor: string | null; // Background color
+  backgroundImage: string | null; // Optional background image URL
+
+  // Circle Colors (from outer to inner)
+  circle1Color: string; // Outermost circle color
+  circle2Color: string; // Second circle color
+  circle3Color: string; // Third circle color
+  circle4Color: string; // Innermost circle color
+
+  // Animation Settings
+  speed: number | string; // Animation speed (higher = faster)
+
+  // Text Configuration
+  enableText: boolean; // Show/hide center text
+  textContent: string; // Text to display
+  textColor: string; // Text color
+  textSize: string | number; // Text size
+}
+```
+
+</details>
+
+<br />
+
+#### 📚 Usage Examples
+
+<details>
+<summary><b>Basic Usage</b></summary>
+
+<br />
 
 ```tsx
 import { CrystalBall } from "@innovista/ui";
@@ -136,41 +197,12 @@ function HeroSection() {
 }
 ```
 
-#### Props
+</details>
 
-| Prop            | Type                                 | Default      | Description                                                                                           |
-| --------------- | ------------------------------------ | ------------ | ----------------------------------------------------------------------------------------------------- |
-| `width`         | `string \| number \| "auto" \| null` | `"auto"`     | Width of the component. Accepts CSS values like `"100%"`, `"500px"`, or numbers (treated as pixels)   |
-| `height`        | `string \| number \| "auto" \| null` | `"auto"`     | Height of the component. Accepts CSS values like `"100vh"`, `"500px"`, or numbers (treated as pixels) |
-| `styleSettings` | `StyleSettings`                      | **Required** | Configuration object for animation and styling                                                        |
-| `children`      | `React.ReactNode`                    | -            | Content to display over the animation                                                                 |
+<details>
+<summary><b>Advanced Example with Custom Styling</b></summary>
 
-#### StyleSettings Interface
-
-```tsx
-interface StyleSettings {
-  // Background
-  backgroundColor: string | null; // Background color of the container
-  backgroundImage: null | string; // Optional background image URL
-
-  // Circle Colors
-  circle1Color: string; // Color of the outermost circle
-  circle2Color: string; // Color of the second circle
-  circle3Color: string; // Color of the third circle
-  circle4Color: string; // Color of the innermost circle
-
-  // Animation
-  speed: number | string; // Animation speed (higher = faster)
-
-  // Text Configuration
-  enableText: boolean; // Show/hide text in the center
-  textContent: string; // Text to display
-  textColor: string; // Text color
-  textSize: string | number; // Text size (CSS value or number)
-}
-```
-
-#### Advanced Example
+<br />
 
 ```tsx
 import { CrystalBall } from "@innovista/ui";
@@ -210,68 +242,12 @@ function AdvancedExample() {
 }
 ```
 
-#### Without Text
+</details>
 
-```tsx
-<CrystalBall
-  width="100%"
-  height="100vh"
-  styleSettings={{
-    backgroundColor: "#000",
-    circle1Color: "#f8f4ff",
-    circle2Color: "#e6d9ff",
-    circle3Color: "#d4b3ff",
-    circle4Color: "#ff00ff",
-    speed: 1,
-    enableText: false, // Disable text
-    textContent: "",
-    textColor: "#ffffff",
-    textSize: 37,
-  }}
->
-  {/* Your content */}
-</CrystalBall>
-```
+<details>
+<summary><b>Next.js Integration</b></summary>
 
----
-
-## 📘 TypeScript Support
-
-This package is written in TypeScript and includes comprehensive type definitions. Import types as needed:
-
-```tsx
-import { CrystalBall } from "@innovista/ui";
-import type { CrystalBallProps, StyleSettings } from "@innovista/ui";
-
-// Type-safe component usage
-const settings: StyleSettings = {
-  backgroundColor: "#000",
-  circle1Color: "#f8f4ff",
-  circle2Color: "#e6d9ff",
-  circle3Color: "#d4b3ff",
-  circle4Color: "#ff00ff",
-  speed: 1,
-  enableText: true,
-  textContent: "TypeScript",
-  textColor: "#ffffff",
-  textSize: 37,
-};
-```
-
----
-
-## ⚙️ Requirements
-
-- **React** >= 17.0.0 or >= 18.0.0
-- **React DOM** >= 17.0.0 or >= 18.0.0
-
-This package uses React as a peer dependency, so make sure you have React installed in your project.
-
----
-
-## 💡 Examples
-
-### Next.js Example
+<br />
 
 ```tsx
 // app/page.tsx or pages/index.tsx
@@ -303,7 +279,12 @@ export default function HomePage() {
 }
 ```
 
-### Custom Styling Example
+</details>
+
+<details>
+<summary><b>With Custom Background Image</b></summary>
+
+<br />
 
 ```tsx
 import { CrystalBall } from "@innovista/ui";
@@ -333,41 +314,54 @@ function CustomStyled() {
 }
 ```
 
----
+</details>
+
+<br />
+
+
+## ⚙️ Requirements
+
+| Package       | Version                |
+| ------------- | ---------------------- |
+| **React**     | >= 17.0.0 or >= 18.0.0 |
+| **React DOM** | >= 17.0.0 or >= 18.0.0 |
+
+> ⚠️ **Note:** This package uses React as a peer dependency. Make sure React is installed in your project.
+
+<br />
 
 ## 🤝 Contributing
 
-Contributions are welcome! If you'd like to contribute to this project:
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
----
+
+<br />
 
 ## 📄 License
 
-This project is licensed under the ISC License.
+This project is licensed under the **ISC License**.
 
----
+<br />
 
 ## 👤 Author
 
 **Abdulrahman Salameh**
 
-- Email: [abdulrahman.salameh5@gmail.com](mailto:abdulrahman.salameh5@gmail.com)
-- GitHub: [@innovista](https://github.com/innovista)
+- 📧 Email: [abdulrahman.salameh5@gmail.com](mailto:abdulrahman.salameh5@gmail.com)
+- 🐙 GitHub: [@salamehDotDev](https://github.com/salamehDotDev)
+
+<br />
 
 ---
 
 <div align="center">
 
-**Made with ❤️ by the Innovista team**
+### Made with ❤️ by the Innovista team
 
-[Report Bug](https://github.com/innovista/ui-react-nextjs/issues) · [Request Feature](https://github.com/innovista/ui-react-nextjs/issues)
+[![Star on GitHub](https://img.shields.io/github/stars/innovista/ui-react-nextjs?style=social)](https://github.com/innovista/ui-react-nextjs)
+
+[Report Bug](https://github.com/innovista/ui-react-nextjs/issues) • [Request Feature](https://github.com/innovista/ui-react-nextjs/issues) • [Discussions](https://github.com/innovista/ui-react-nextjs/discussions)
+
+**If this project helps you, please consider giving it a ⭐!**
 
 </div>
-#   I n n o V i s t a - U I  
- 

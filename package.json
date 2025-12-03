@@ -1,0 +1,60 @@
+{
+  "name": "@innovista/ui",
+  "version": "1.0.1",
+  "description": "A package that provides everything you need to build modern, fast, and maintainable websites following clean code and best practices.",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ui library",
+    "ui package",
+    "user interface",
+    "ui components",
+    "components",
+    "library",
+    "package",
+    "react",
+    "react-components",
+    "react-ui",
+    "next.js",
+    "nextjs",
+    "typescript",
+    "ui"
+  ],
+  "bugs": {
+    "email": "abdulrahman.salameh5@gmail.com"
+  },
+  "email": "abdulrahman.salameh5@gmail.com",
+  "author": "Abdulrahman Salameh",
+  "funding": {
+    "type": "individual"
+  },
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/innovista/ui-react-nextjs.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^5.9.3"
+  }
+}
