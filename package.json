@@ -1,6 +1,6 @@
 {
   "name": "@innovista/ui",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A package that provides everything you need to build modern, fast, and maintainable websites following clean code and best practices.",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
