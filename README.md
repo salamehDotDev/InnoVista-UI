@@ -55,9 +55,7 @@ yarn add @innovista/ui
 pnpm add @innovista/ui
 ```
 
-<summary>💡 Note for PowerShell users</summary>
-
-<br />
+💡 Note for PowerShell users
 
 Use quotes when installing scoped packages:
 
