@@ -63,8 +63,6 @@ Use quotes when installing scoped packages:
 npm install "@innovista/ui"
 ```
 
-
-
 <!-- <br />
 
 ## 🚀 Quick Start
@@ -106,9 +104,9 @@ function App() {
 
 ## 🧩 Components
 
-### CrystalBall
+### 🔮 CrystalBall
 
-> An animated crystal ball background component with customizable styles and smooth animations. Perfect for creating eye-catching hero sections and landing pages.
+> An animated crystal ball background component with customizable styles and smooth pulsating animations. Perfect for creating eye-catching hero sections and landing pages.
 
 💡 **Pro Tip:** When you provide `children`, text rendering is automatically disabled to avoid conflicts.
 
@@ -116,12 +114,12 @@ function App() {
 
 #### 📋 Props
 
-| Prop            | Type                                 | Default      | Description                         |
-| --------------- | ------------------------------------ | ------------ | ----------------------------------- |
-| `width`         | `string \| number \| "auto" \| null` | `"auto"`     | Width of the component              |
-| `height`        | `string \| number \| "auto" \| null` | `"auto"`     | Height of the component             |
-| `styleSettings` | `StyleSettings`                      | `Optional`   | Animation and styling configuration |
-| `children`      | `React.ReactNode`                    | -            | Content to display over animation   |
+| Prop            | Type                                 | Default    | Description                         |
+| --------------- | ------------------------------------ | ---------- | ----------------------------------- |
+| `width`         | `string \| number \| "auto" \| null` | `"auto"`   | Width of the component              |
+| `height`        | `string \| number \| "auto" \| null` | `"auto"`   | Height of the component             |
+| `styleSettings` | `StyleSettings`                      | `Optional` | Animation and styling configuration |
+| `children`      | `React.ReactNode`                    | -          | Content to display over animation   |
 
 <br />
 
@@ -300,6 +298,318 @@ function CustomStyled() {
 
 <br />
 
+---
+
+### ✨ AnimatedCircles
+
+> A mesmerizing animated background component featuring dynamic floating circles with customizable colors, speeds, and effects. Create stunning visual experiences with layered animations and blend modes.
+
+💡 **Pro Tip:** Use `intensity` presets (`subtle`, `normal`, `intense`) for quick setup, or fine-tune every detail with the `advanced` prop.
+
+<br />
+
+#### 📋 Props
+
+| Prop              | Type                                | Default     | Description                                  |
+| ----------------- | ----------------------------------- | ----------- | -------------------------------------------- |
+| `width`           | `string \| number \| "auto"`        | `"auto"`    | Width of the component                       |
+| `height`          | `string \| number \| "auto"`        | `"auto"`    | Height of the component                      |
+| `backgroundColor` | `string`                            | `"#123"`    | Background color                             |
+| `backgroundImage` | `string`                            | `undefined` | Optional background image URL                |
+| `speed`           | `number \| string`                  | `1`         | Animation speed (higher = faster)            |
+| `intensity`       | `"subtle" \| "normal" \| "intense"` | `"normal"`  | Preset intensity level                       |
+| `advanced`        | `AnimatedCirclesAdvancedSettings`   | `undefined` | Advanced customization (overrides intensity) |
+| `children`        | `React.ReactNode`                   | -           | Content to display over animation            |
+
+<br />
+
+<details>
+<summary>📝 <b>Intensity Presets</b></summary>
+
+<br />
+
+```typescript
+// Built-in intensity presets
+const INTENSITY_PRESETS = {
+  subtle: {
+    count: 20, // Fewer circles
+    size: 5, // Smaller size
+    spread: 2, // Tighter spread
+    opacity: 0.6, // More transparent
+    layers: 2, // Fewer layers
+  },
+  normal: {
+    count: 40,
+    size: 7,
+    spread: 3,
+    opacity: 0.9,
+    layers: 4,
+  },
+  intense: {
+    count: 80, // More circles
+    size: 10, // Larger size
+    spread: 4, // Wider spread
+    opacity: 1, // Fully opaque
+    layers: 6, // More layers
+  },
+};
+```
+
+</details>
+
+<details>
+<summary>📝 <b>AnimatedCirclesAdvancedSettings Interface</b></summary>
+
+<br />
+
+```typescript
+interface AnimatedCirclesAdvancedSettings {
+  // Circle Configuration
+  count?: number | string; // Number of circles (overrides intensity preset)
+  size?: number | string; // Size of circles (overrides intensity preset)
+  spread?: number | string; // Spread radius (overrides intensity preset)
+  opacity?: number; // Circle opacity 0-1 (overrides intensity preset)
+  layers?: number; // Number of animation layers (overrides intensity preset)
+
+  // Animation Controls
+  animation?: {
+    rotation?: boolean; // Enable rotation animation (default: true)
+    scale?: boolean; // Enable scale animation (default: true)
+    translation?: boolean; // Enable translation animation (default: true)
+  };
+
+  // Visual Effects
+  blendMode?: "screen" | "multiply" | "overlay" | "lighten" | "darken" | "color-dodge" | "color-burn";
+}
+```
+
+</details>
+
+<br />
+
+#### 📚 Usage Examples
+
+<details>
+<summary><b>Basic Usage - Using Intensity Presets</b></summary>
+
+<br />
+
+```tsx
+import { AnimatedCircles } from "@innovista/ui";
+
+function HeroSection() {
+  return (
+    <AnimatedCircles backgroundColor="#0a0a0a" intensity="normal" speed={1}>
+      <div className="hero-content">
+        <h1>Beautiful Animated Backgrounds</h1>
+        <p>Create stunning visual effects effortlessly</p>
+      </div>
+    </AnimatedCircles>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Simple Setup - Three Different Intensities</b></summary>
+
+<br />
+
+```tsx
+import { AnimatedCircles } from "@innovista/ui";
+
+// Subtle - Perfect for light backgrounds
+function SubtleExample() {
+  return (
+    <AnimatedCircles intensity="subtle" backgroundColor="#f0f0f0">
+      <h2>Subtle and Elegant</h2>
+    </AnimatedCircles>
+  );
+}
+
+// Normal - Balanced default
+function NormalExample() {
+  return (
+    <AnimatedCircles intensity="normal" backgroundColor="#1a1a1a">
+      <h2>Perfect Balance</h2>
+    </AnimatedCircles>
+  );
+}
+
+// Intense - Maximum impact
+function IntenseExample() {
+  return (
+    <AnimatedCircles intensity="intense" backgroundColor="#000">
+      <h2>Bold and Dynamic</h2>
+    </AnimatedCircles>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Advanced Example with Custom Settings</b></summary>
+
+<br />
+
+```tsx
+import { AnimatedCircles } from "@innovista/ui";
+
+function AdvancedExample() {
+  return (
+    <AnimatedCircles
+      width="100%"
+      height="100vh"
+      backgroundColor="#000000"
+      speed={1.5}
+      intensity="intense"
+      advanced={{
+        count: 60,
+        size: 10,
+        spread: 4,
+        opacity: 0.95,
+        layers: 6,
+        blendMode: "screen",
+        animation: {
+          rotation: true,
+          scale: true,
+          translation: true,
+        },
+      }}
+    >
+      <div
+        style={{
+          textAlign: "center",
+          color: "white",
+          padding: "2rem",
+        }}
+      >
+        <h1 style={{ fontSize: "3rem", marginBottom: "1rem" }}>Innovista UI</h1>
+        <p style={{ fontSize: "1.5rem" }}>Next-level animations</p>
+      </div>
+    </AnimatedCircles>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Subtle Background Effect</b></summary>
+
+<br />
+
+```tsx
+import { AnimatedCircles } from "@innovista/ui";
+
+function SubtleBackground() {
+  return (
+    <AnimatedCircles
+      width="100%"
+      height="600px"
+      backgroundColor="#f5f5f5"
+      speed={0.5}
+      intensity="subtle"
+      advanced={{
+        opacity: 0.4,
+        blendMode: "multiply",
+      }}
+    >
+      <div style={{ padding: "3rem" }}>
+        <h2>Elegant Content Section</h2>
+        <p>Subtle animations enhance without overwhelming</p>
+      </div>
+    </AnimatedCircles>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Intense Visual Experience</b></summary>
+
+<br />
+
+```tsx
+import { AnimatedCircles } from "@innovista/ui";
+
+function IntenseVisual() {
+  return (
+    <AnimatedCircles
+      width="100%"
+      height="100vh"
+      backgroundColor="#120458"
+      speed={2}
+      intensity="intense"
+      advanced={{
+        size: 12,
+        spread: 5,
+        layers: 8,
+        blendMode: "color-dodge",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100%",
+          color: "white",
+          fontSize: "4rem",
+          fontWeight: "bold",
+        }}
+      >
+        WOW!
+      </div>
+    </AnimatedCircles>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Next.js Integration</b></summary>
+
+<br />
+
+```tsx
+// app/page.tsx or pages/index.tsx
+import { AnimatedCircles } from "@innovista/ui";
+
+export default function HomePage() {
+  return (
+    <AnimatedCircles
+      width="100%"
+      height="100vh"
+      backgroundColor="#0f0f23"
+      speed={1.2}
+      intensity="normal"
+      advanced={{
+        count: 50,
+        size: 8,
+        spread: 3.5,
+        opacity: 0.85,
+        layers: 5,
+        blendMode: "screen",
+      }}
+    >
+      <main style={{ padding: "2rem", textAlign: "center", color: "white" }}>
+        <h1>Next.js + Innovista UI</h1>
+        <p>Beautiful animations out of the box</p>
+      </main>
+    </AnimatedCircles>
+  );
+}
+```
+
+</details>
+
+<br />
+
 ## ⚙️ Requirements
 
 | Package       | Version                |
@@ -310,7 +620,6 @@ function CustomStyled() {
 > ⚠️ **Note:** This package uses React as a peer dependency. Make sure React is installed in your project.
 
 <br />
-
 
 ## 📄 License
 
@@ -335,7 +644,7 @@ This project is licensed under the **ISC License**.
 
 [![Star on GitHub](https://img.shields.io/github/stars/innovista/ui-react-nextjs?style=social)](https://github.com/innovista/ui-react-nextjs)
 
-[Report Bug](https://github.com/salamehDotDev/InnoVista-UI) • [Request Feature](https://github.com/salamehDotDev/InnoVista-UI) 
+[Report Bug](https://github.com/salamehDotDev/InnoVista-UI) • [Request Feature](https://github.com/salamehDotDev/InnoVista-UI)
 
 **If this project helps you, please consider giving it a ⭐!**
 
