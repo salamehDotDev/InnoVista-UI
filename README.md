@@ -15,7 +15,7 @@
 
 Build beautiful, fast, and maintainable websites with our collection of carefully crafted React components.
 
-[📖 Documentation](#-components) • [⚡ Quick Start](#-quick-start) • [💡 Examples](#-examples) • [🐛 Issues](https://github.com/salamehDotDev/InnoVista-UI)
+[📖 Documentation](#-components) • [⚡ Quick Start](#-quick-start) • [💡 Examples](#-components) • [🐛 Issues](https://github.com/salamehDotDev/InnoVista-UI)
 
 </div>
 
@@ -55,7 +55,6 @@ yarn add @innovista/ui
 pnpm add @innovista/ui
 ```
 
-<details>
 <summary>💡 Note for PowerShell users</summary>
 
 <br />
@@ -66,7 +65,7 @@ Use quotes when installing scoped packages:
 npm install "@innovista/ui"
 ```
 
-</details>
+
 
 <br />
 
