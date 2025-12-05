@@ -2,24 +2,24 @@ import React, { useEffect, useRef } from "react";
 import CrystalBallPlugin from "./crystalBallPlugin.js";
 
 interface Props {
-  styleSettings: StyleSettings;
-  width: string | number | "auto" | null;
-  height: string | number | "auto" | null;
+  styleSettings?: StyleSettings;
+  width?: string | number | "auto";
+  height?: string | number | "auto";
   children?: React.ReactNode;
 }
 
 interface StyleSettings {
-  backgroundColor: string | null;
-  backgroundImage: null | string;
+  backgroundColor?: string | null;
+  backgroundImage?: null | string;
   circle1Color: string;
   circle2Color: string;
   circle3Color: string;
   circle4Color: string;
   speed: number | string;
   enableText: boolean;
-  textContent: string;
-  textColor: string;
-  textSize: string | number;
+  textContent?: string;
+  textColor?: string;
+  textSize?: string | number;
 }
 
 export function CrystalBall({ width = "auto", height = "auto", styleSettings, children }: Props) {

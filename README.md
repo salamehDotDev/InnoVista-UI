@@ -65,7 +65,7 @@ npm install "@innovista/ui"
 
 
 
-<br />
+<!-- <br />
 
 ## 🚀 Quick Start
 
@@ -100,7 +100,7 @@ function App() {
 }
 ```
 
-🎉 **That's it!** You're ready to build amazing UIs.
+🎉 **That's it!** You're ready to build amazing UIs. -->
 
 <br />
 
@@ -120,7 +120,7 @@ function App() {
 | --------------- | ------------------------------------ | ------------ | ----------------------------------- |
 | `width`         | `string \| number \| "auto" \| null` | `"auto"`     | Width of the component              |
 | `height`        | `string \| number \| "auto" \| null` | `"auto"`     | Height of the component             |
-| `styleSettings` | `StyleSettings`                      | **Required** | Animation and styling configuration |
+| `styleSettings` | `StyleSettings`                      | `Optional`   | Animation and styling configuration |
 | `children`      | `React.ReactNode`                    | -            | Content to display over animation   |
 
 <br />
@@ -133,8 +133,8 @@ function App() {
 ```typescript
 interface StyleSettings {
   // Background Configuration
-  backgroundColor: string | null; // Background color
-  backgroundImage: string | null; // Optional background image URL
+  backgroundColo?r: string | null; // Background color
+  backgroundImage?: string | null; // Optional background image URL
 
   // Circle Colors (from outer to inner)
   circle1Color: string; // Outermost circle color
@@ -147,9 +147,9 @@ interface StyleSettings {
 
   // Text Configuration
   enableText: boolean; // Show/hide center text
-  textContent: string; // Text to display
-  textColor: string; // Text color
-  textSize: string | number; // Text size
+  textContent?: string; // Text to display
+  textColor?: string; // Text color
+  textSize?: string | number; // Text size
 }
 ```
 
@@ -169,22 +169,7 @@ import { CrystalBall } from "@innovista/ui";
 
 function HeroSection() {
   return (
-    <CrystalBall
-      width="100%"
-      height="100vh"
-      styleSettings={{
-        backgroundColor: "#0a0a0a",
-        circle1Color: "#f8f4ff",
-        circle2Color: "#e6d9ff",
-        circle3Color: "#d4b3ff",
-        circle4Color: "#ff00ff",
-        speed: 1,
-        enableText: true,
-        textContent: "Innovista",
-        textColor: "#ffffff",
-        textSize: 37,
-      }}
-    >
+    <CrystalBall>
       <div className="hero-content">
         <h1>Welcome to Innovista</h1>
         <p>Building amazing experiences</p>
@@ -293,7 +278,7 @@ function CustomStyled() {
       height="500px"
       styleSettings={{
         backgroundColor: "transparent",
-        backgroundImage: "url('/your-image.jpg')",
+        backgroundImage: "/your-image.jpg'",
         circle1Color: "rgba(255, 255, 255, 0.1)",
         circle2Color: "rgba(255, 255, 255, 0.2)",
         circle3Color: "rgba(255, 255, 255, 0.3)",
@@ -326,9 +311,6 @@ function CustomStyled() {
 
 <br />
 
-## 🤝 Contributing
-
-<br />
 
 ## 📄 License
 
