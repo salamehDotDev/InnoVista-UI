@@ -11,12 +11,12 @@ interface Props {
 interface StyleSettings {
   backgroundColor?: string | null;
   backgroundImage?: null | string;
-  circle1Color: string;
-  circle2Color: string;
-  circle3Color: string;
-  circle4Color: string;
-  speed: number | string;
-  enableText: boolean;
+  circle1Color?: string;
+  circle2Color?: string;
+  circle3Color?: string;
+  circle4Color?: string;
+  speed?: number | string;
+  enableText?: boolean;
   textContent?: string;
   textColor?: string;
   textSize?: string | number;

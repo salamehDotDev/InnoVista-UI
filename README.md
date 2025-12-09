@@ -131,7 +131,7 @@ function App() {
 ```typescript
 interface StyleSettings {
   // Background Configuration
-  backgroundColo?r: string | null; // Background color
+  backgroundColor?: string | null; // Background color
   backgroundImage?: string | null; // Optional background image URL
 
   // Circle Colors (from outer to inner)
@@ -602,6 +602,344 @@ export default function HomePage() {
         <p>Beautiful animations out of the box</p>
       </main>
     </AnimatedCircles>
+  );
+}
+```
+
+</details>
+
+<br />
+
+---
+
+### 🎯 ExpandingBalls
+
+> A dynamic animated background component featuring expanding and moving balls that create mesmerizing visual effects. Perfect for modern, energetic designs with customizable colors, speeds, and interactive effects.
+
+💡 **Pro Tip:** Use `intensity` presets (`subtle`, `normal`, `intense`) for quick setup, or customize with convenience props (`count`, `colors`) or fine-tune with the `advanced` prop.
+
+<br />
+
+#### 📋 Props
+
+| Prop              | Type                                | Default     | Description                                  |
+| ----------------- | ----------------------------------- | ----------- | -------------------------------------------- |
+| `width`           | `string \| number \| "auto"`        | `"auto"`    | Width of the component                       |
+| `height`          | `string \| number \| "auto"`        | `"auto"`    | Height of the component                      |
+| `backgroundColor` | `string`                            | `"#000000"` | Background color                             |
+| `backgroundImage` | `string`                            | `undefined` | Optional background image URL                |
+| `speed`           | `number \| string`                  | `1`         | Animation speed (higher = faster)            |
+| `intensity`       | `"subtle" \| "normal" \| "intense"` | `"normal"`  | Preset intensity level                       |
+| `count`           | `number`                            | `undefined` | Number of balls (overrides intensity preset) |
+| `colors`          | `string[]`                          | `undefined` | Color palette (overrides default)            |
+| `advanced`        | `ExpandingBallsAdvancedSettings`    | `undefined` | Advanced customization (overrides intensity) |
+| `children`        | `React.ReactNode`                   | -           | Content to display over animation            |
+
+<br />
+
+<details>
+<summary>📝 <b>Intensity Presets</b></summary>
+
+<br />
+
+```typescript
+// Built-in intensity presets
+const INTENSITY_PRESETS = {
+  subtle: {
+    count: 30, // Fewer balls
+    size: { min: 3, max: 10 }, // Smaller size range
+    expansionRate: 0.05, // Slower expansion
+    velocityRange: 2, // Slower movement
+    effects: { glow: false, trails: false, mouseInteraction: false },
+  },
+  normal: {
+    count: 70, // Balanced number
+    size: { min: 4, max: 16 }, // Medium size range
+    expansionRate: 0.1, // Moderate expansion
+    velocityRange: 4, // Moderate movement
+    effects: { glow: false, trails: false, mouseInteraction: false },
+  },
+  intense: {
+    count: 120, // More balls
+    size: { min: 5, max: 20 }, // Larger size range
+    expansionRate: 0.15, // Faster expansion
+    velocityRange: 6, // Faster movement
+    effects: { glow: true, trails: true, mouseInteraction: false },
+  },
+};
+```
+
+</details>
+
+<details>
+<summary>📝 <b>ExpandingBallsAdvancedSettings Interface</b></summary>
+
+<br />
+
+```typescript
+interface ExpandingBallsAdvancedSettings {
+  // Ball Configuration
+  count?: number; // Number of balls (overrides intensity preset)
+  size?: {
+    min?: number; // Minimum ball size in pixels
+    max?: number; // Maximum ball size in pixels
+  };
+  expansionRate?: number; // How fast balls expand (lower = slower)
+  velocityRange?: number; // Movement speed range (lower = slower)
+  colors?: string[]; // Color palette array (RGB format: "r, g, b," or hex: "#ffffff")
+
+  // Visual Effects
+  effects?: {
+    glow?: boolean; // Enable glow effect around balls
+    trails?: boolean; // Enable motion trails
+    mouseInteraction?: boolean; // Enable mouse/touch interaction
+  };
+}
+```
+
+</details>
+
+<br />
+
+#### 📚 Usage Examples
+
+<details>
+<summary><b>Basic Usage - Using Intensity Presets</b></summary>
+
+<br />
+
+```tsx
+import { ExpandingBalls } from "@innovista/ui";
+
+function HeroSection() {
+  return (
+    <ExpandingBalls backgroundColor="#000000" intensity="normal" speed={1}>
+      <div className="hero-content">
+        <h1>Dynamic Animated Backgrounds</h1>
+        <p>Create stunning visual effects effortlessly</p>
+      </div>
+    </ExpandingBalls>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Simple Setup - Three Different Intensities</b></summary>
+
+<br />
+
+```tsx
+import { ExpandingBalls } from "@innovista/ui";
+
+// Subtle - Perfect for minimal designs
+function SubtleExample() {
+  return (
+    <ExpandingBalls intensity="subtle" backgroundColor="#0a0a0a">
+      <h2>Subtle and Smooth</h2>
+    </ExpandingBalls>
+  );
+}
+
+// Normal - Balanced default
+function NormalExample() {
+  return (
+    <ExpandingBalls intensity="normal" backgroundColor="#000000">
+      <h2>Perfect Balance</h2>
+    </ExpandingBalls>
+  );
+}
+
+// Intense - Maximum visual impact
+function IntenseExample() {
+  return (
+    <ExpandingBalls intensity="intense" backgroundColor="#000">
+      <h2>Bold and Dynamic</h2>
+    </ExpandingBalls>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Using Convenience Props</b></summary>
+
+<br />
+
+```tsx
+import { ExpandingBalls } from "@innovista/ui";
+
+function CustomExample() {
+  return (
+    <ExpandingBalls
+      backgroundColor="#1a1a2e"
+      speed={1.5}
+      count={50} // Override preset count
+      colors={[
+        "255, 107, 107,", // Red
+        "255, 159, 64,", // Orange
+        "255, 206, 84,", // Yellow
+        "75, 192, 192,", // Teal
+        "54, 162, 235,", // Blue
+      ]}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Custom Colors and Count</h1>
+      </div>
+    </ExpandingBalls>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Advanced Example with Custom Settings</b></summary>
+
+<br />
+
+```tsx
+import { ExpandingBalls } from "@innovista/ui";
+
+function AdvancedExample() {
+  return (
+    <ExpandingBalls
+      width="100%"
+      height="100vh"
+      backgroundColor="#000000"
+      speed={1.5}
+      intensity="intense"
+      advanced={{
+        count: 100,
+        size: { min: 5, max: 25 },
+        expansionRate: 0.12,
+        velocityRange: 5,
+        colors: [
+          "138, 43, 226,", // Blue Violet
+          "75, 0, 130,", // Indigo
+          "148, 0, 211,", // Dark Violet
+        ],
+        effects: {
+          glow: true,
+          trails: true,
+          mouseInteraction: false,
+        },
+      }}
+    >
+      <div
+        style={{
+          textAlign: "center",
+          color: "white",
+          padding: "2rem",
+        }}
+      >
+        <h1 style={{ fontSize: "3rem", marginBottom: "1rem" }}>Innovista UI</h1>
+        <p style={{ fontSize: "1.5rem" }}>Next-level animations</p>
+      </div>
+    </ExpandingBalls>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>With Mouse Interaction</b></summary>
+
+<br />
+
+```tsx
+import { ExpandingBalls } from "@innovista/ui";
+
+function InteractiveExample() {
+  return (
+    <ExpandingBalls
+      width="100%"
+      height="100vh"
+      backgroundColor="#0f0f23"
+      speed={1}
+      intensity="normal"
+      advanced={{
+        effects: {
+          glow: true,
+          trails: true,
+          mouseInteraction: true, // Enable mouse interaction
+        },
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Move your mouse to interact!</h1>
+        <p>The balls will react to your cursor movement</p>
+      </div>
+    </ExpandingBalls>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Subtle Background Effect</b></summary>
+
+<br />
+
+```tsx
+import { ExpandingBalls } from "@innovista/ui";
+
+function SubtleBackground() {
+  return (
+    <ExpandingBalls
+      width="100%"
+      height="600px"
+      backgroundColor="#1a1a1a"
+      speed={0.8}
+      intensity="subtle"
+      advanced={{
+        expansionRate: 0.03, // Very slow expansion
+        velocityRange: 1.5, // Very slow movement
+      }}
+    >
+      <div style={{ padding: "3rem", color: "white" }}>
+        <h2>Elegant Content Section</h2>
+        <p>Subtle animations enhance without overwhelming</p>
+      </div>
+    </ExpandingBalls>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Next.js Integration</b></summary>
+
+<br />
+
+```tsx
+// app/page.tsx or pages/index.tsx
+import { ExpandingBalls } from "@innovista/ui";
+
+export default function HomePage() {
+  return (
+    <ExpandingBalls
+      width="100%"
+      height="100vh"
+      backgroundColor="#0f0f23"
+      speed={1.2}
+      intensity="normal"
+      colors={[
+        "85, 221, 224,", // Cyan
+        "51, 101, 138,", // Blue
+        "246, 174, 45,", // Orange
+      ]}
+    >
+      <main style={{ padding: "2rem", textAlign: "center", color: "white" }}>
+        <h1>Next.js + Innovista UI</h1>
+        <p>Beautiful animations out of the box</p>
+      </main>
+    </ExpandingBalls>
   );
 }
 ```

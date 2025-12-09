@@ -2,11 +2,13 @@
 // This pattern makes it easy to add new components - just add a new export line
 
 // CrystalBall Component
-export { CrystalBall } from "./components/crystalBallAnimation";
-
+export { CrystalBall } from "./components/backgrounds/crystalBallAnimation";
 
 // AnimatedCircles Component
-export { AnimatedCircles } from "./components/AnimatedCircles";
+export { AnimatedCircles } from "./components/backgrounds/AnimatedCircles";
+
+// ExpandingBalls Component
+export { ExpandingBalls } from "./components/backgrounds/expandingBallsAnimation";
 
 // Add new components here following the same pattern:
 // export { ComponentName } from "./components/componentFolder";
