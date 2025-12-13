@@ -1,12 +1,11 @@
 import React, { useEffect, useRef, useMemo, useCallback } from "react";
-// @ts-ignore - JS file export, TypeScript may not recognize it
-import ExpandingSquaresPlugin from "./ExpandingSquaresPlugin.js";
+import FirefliesPlugin from "./FirefliesPlugin.js";
 
 // Simplified interface with all optional settings
 interface Props {
   // Basic settings (most commonly used)
   backgroundColor?: string;
-  backgroundImage?: string | null;
+  backgroundImage?: string;
   speed?: number | string;
   width?: string | number | "auto";
   height?: string | number | "auto";
@@ -20,32 +19,28 @@ interface AdvancedSettings {
   count?: number | string;
   color?: string;
   size?: number | string;
-  duration?: number | string;
-  enableBorder?: boolean;
-  borderWidth?: number | string;
+  opacity?: number | string;
+  fireflySpeed?: number | string;
+  glow?: boolean;
+  glowIntensity?: number | string;
+  glowSize?: number | string;
+  flickerSpeed?: number | string;
+  flickerIntensity?: number | string;
+  enableTrails?: boolean;
+  trailLength?: number | string;
+  trailOpacity?: number | string;
+  enableWander?: boolean;
+  wanderSpeed?: number | string;
+  wanderRadius?: number | string;
 }
 
 /**
- * Expanding Squares Component
- * A React component that creates animated expanding squares background
+ * Fireflies Component
+ * A React component that creates animated fireflies background
  */
-export function ExpandingSquares({ width = "auto", height = "auto", backgroundColor = "#08be88", backgroundImage = null, speed = 1, advanced, children }: Props) {
+export function Fireflies({ width = "auto", height = "auto", backgroundColor = "#0a0a0a", backgroundImage, speed = 1, advanced, children }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const pluginRef = useRef<{ start: () => void; clean: () => void } | null>(null);
-
-  /**
-   * Converts speed to duration (speed is inverse - higher speed = lower duration)
-   * @param speedValue - Speed value to convert
-   * @returns Duration in seconds
-   */
-  const speedToDuration = useCallback((speedValue: number | string): number => {
-    const numSpeed = typeof speedValue === "string" ? parseFloat(speedValue) : speedValue;
-    if (isNaN(numSpeed) || numSpeed <= 0) {
-      return 12; // Default duration
-    }
-    // Speed of 1 = duration of 12, speed of 2 = duration of 6, etc.
-    return 12 / numSpeed;
-  }, []);
 
   /**
    * Memoized container style calculation
@@ -96,19 +91,35 @@ export function ExpandingSquares({ width = "auto", height = "auto", backgroundCo
    * Builds current settings object for the plugin
    */
   const buildCurrentSettings = useCallback(() => {
-    const duration = advanced?.duration ?? speedToDuration(speed);
+    // Helper to convert string/number to number
+    const toNumber = (value: number | string | undefined, defaultValue: number): number => {
+      if (value === undefined) return defaultValue;
+      const num = typeof value === "string" ? parseFloat(value) : value;
+      return isNaN(num) ? defaultValue : num;
+    };
 
     return {
       backgroundColor,
-      backgroundImage,
-      count: advanced?.count ?? 5,
-      color: advanced?.color ?? "#079e71",
-      size: advanced?.size ?? 10,
-      duration: typeof duration === "string" ? parseFloat(duration) : duration,
-      enableBorder: advanced?.enableBorder ?? true,
-      borderWidth: advanced?.borderWidth ?? 1,
+      backgroundImage: backgroundImage || null,
+      speed: toNumber(speed, 1),
+      count: toNumber(advanced?.count, 30),
+      color: advanced?.color ?? "#ffff00",
+      size: toNumber(advanced?.size, 2),
+      opacity: toNumber(advanced?.opacity, 0.8),
+      fireflySpeed: toNumber(advanced?.fireflySpeed, 0.5),
+      glow: advanced?.glow ?? true,
+      glowIntensity: toNumber(advanced?.glowIntensity, 0.6),
+      glowSize: toNumber(advanced?.glowSize, 15),
+      flickerSpeed: toNumber(advanced?.flickerSpeed, 0.02),
+      flickerIntensity: toNumber(advanced?.flickerIntensity, 0.3),
+      enableTrails: advanced?.enableTrails ?? true,
+      trailLength: toNumber(advanced?.trailLength, 5),
+      trailOpacity: toNumber(advanced?.trailOpacity, 0.1),
+      enableWander: advanced?.enableWander ?? true,
+      wanderSpeed: toNumber(advanced?.wanderSpeed, 0.3),
+      wanderRadius: toNumber(advanced?.wanderRadius, 50),
     };
-  }, [backgroundColor, backgroundImage, speed, advanced, speedToDuration]);
+  }, [backgroundColor, backgroundImage, speed, advanced]);
 
   /**
    * Effect to initialize and manage the animation
@@ -117,13 +128,14 @@ export function ExpandingSquares({ width = "auto", height = "auto", backgroundCo
     if (!containerRef.current) return;
 
     const settings = buildCurrentSettings();
-    const expandingSquares = ExpandingSquaresPlugin(containerRef.current, settings) as {
+    const fireflies = FirefliesPlugin(containerRef.current, settings) as {
       start: () => void;
       clean: () => void;
-    };
-    pluginRef.current = expandingSquares;
+    }
 
-    expandingSquares.start();
+    pluginRef.current = fireflies;
+
+    fireflies.start();
 
     // Setup ResizeObserver to handle container size changes
     const resizeObserver = new ResizeObserver((entries) => {
@@ -132,12 +144,12 @@ export function ExpandingSquares({ width = "auto", height = "auto", backgroundCo
         if (entry.target === containerRef.current && pluginRef.current) {
           pluginRef.current.clean();
           const updatedSettings = buildCurrentSettings();
-          const newPlugin = ExpandingSquaresPlugin(containerRef.current, updatedSettings) as {
+          const newPlugin = FirefliesPlugin(containerRef.current, updatedSettings) as {
             start: () => void;
             clean: () => void;
           };
           pluginRef.current = newPlugin;
-          newPlugin.start();
+          pluginRef.current.start();
           break;
         }
       }
@@ -154,36 +166,34 @@ export function ExpandingSquares({ width = "auto", height = "auto", backgroundCo
     };
   }, [buildCurrentSettings]);
 
-  const contentOverlayStyle: React.CSSProperties = useMemo(
-    () => ({
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      zIndex: 30,
-      pointerEvents: "none",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    }),
-    []
-  );
-
-  const contentWrapperStyle: React.CSSProperties = useMemo(
-    () => ({
-      pointerEvents: "auto",
-      position: "relative",
-      zIndex: 31,
-    }),
-    []
-  );
-
   return (
-    <div ref={containerRef} style={containerStyle} role="presentation" aria-label="Animated expanding squares background">
+    <div ref={containerRef} style={containerStyle} role="presentation" aria-label="Animated fireflies background">
       {children && (
-        <div style={contentOverlayStyle} role="region" aria-label="Content overlay">
-          <div style={contentWrapperStyle}>{children}</div>
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 30,
+            pointerEvents: "none",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          role="region"
+          aria-label="Content overlay"
+        >
+          <div
+            style={{
+              pointerEvents: "auto",
+              position: "relative",
+              zIndex: 31,
+            }}
+          >
+            {children}
+          </div>
         </div>
       )}
     </div>
@@ -191,4 +201,4 @@ export function ExpandingSquares({ width = "auto", height = "auto", backgroundCo
 }
 
 // Export types for users who need them
-export type { Props as ExpandingSquaresProps, AdvancedSettings as ExpandingSquaresAdvancedSettings };
+export type { Props as FirefliesProps, AdvancedSettings as FirefliesAdvancedSettings };

@@ -1,12 +1,11 @@
 import React, { useEffect, useRef, useMemo, useCallback } from "react";
-// @ts-ignore - JS file export, TypeScript may not recognize it
-import ExpandingSquaresPlugin from "./ExpandingSquaresPlugin.js";
+import FloatingSquaresPlugin from "./FloatingSquaresPlugin.js";
 
 // Simplified interface with all optional settings
 interface Props {
   // Basic settings (most commonly used)
   backgroundColor?: string;
-  backgroundImage?: string | null;
+  backgroundImage?: string;
   speed?: number | string;
   width?: string | number | "auto";
   height?: string | number | "auto";
@@ -19,33 +18,23 @@ interface Props {
 interface AdvancedSettings {
   count?: number | string;
   color?: string;
-  size?: number | string;
   duration?: number | string;
-  enableBorder?: boolean;
-  borderWidth?: number | string;
+  enableGradient?: boolean;
+  gradientColor1?: string;
+  gradientColor2?: string;
+  gradientDirection?: string;
+  enableRandomSizes?: boolean;
+  enableRandomDelays?: boolean;
+  enableRandomPositions?: boolean;
 }
 
 /**
- * Expanding Squares Component
- * A React component that creates animated expanding squares background
+ * Floating Squares Component
+ * A React component that creates animated floating squares background
  */
-export function ExpandingSquares({ width = "auto", height = "auto", backgroundColor = "#08be88", backgroundImage = null, speed = 1, advanced, children }: Props) {
+export function FloatingSquares({ width = "auto", height = "auto", backgroundColor = "#4e54c8", backgroundImage, speed = 1, advanced, children }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const pluginRef = useRef<{ start: () => void; clean: () => void } | null>(null);
-
-  /**
-   * Converts speed to duration (speed is inverse - higher speed = lower duration)
-   * @param speedValue - Speed value to convert
-   * @returns Duration in seconds
-   */
-  const speedToDuration = useCallback((speedValue: number | string): number => {
-    const numSpeed = typeof speedValue === "string" ? parseFloat(speedValue) : speedValue;
-    if (isNaN(numSpeed) || numSpeed <= 0) {
-      return 12; // Default duration
-    }
-    // Speed of 1 = duration of 12, speed of 2 = duration of 6, etc.
-    return 12 / numSpeed;
-  }, []);
 
   /**
    * Memoized container style calculation
@@ -96,19 +85,29 @@ export function ExpandingSquares({ width = "auto", height = "auto", backgroundCo
    * Builds current settings object for the plugin
    */
   const buildCurrentSettings = useCallback(() => {
-    const duration = advanced?.duration ?? speedToDuration(speed);
+    // Helper to convert string/number to number
+    const toNumber = (value: number | string | undefined, defaultValue: number): number => {
+      if (value === undefined) return defaultValue;
+      const num = typeof value === "string" ? parseFloat(value) : value;
+      return isNaN(num) ? defaultValue : num;
+    };
 
     return {
       backgroundColor,
-      backgroundImage,
-      count: advanced?.count ?? 5,
-      color: advanced?.color ?? "#079e71",
-      size: advanced?.size ?? 10,
-      duration: typeof duration === "string" ? parseFloat(duration) : duration,
-      enableBorder: advanced?.enableBorder ?? true,
-      borderWidth: advanced?.borderWidth ?? 1,
+      backgroundImage: backgroundImage || null,
+      speed: toNumber(speed, 1),
+      count: toNumber(advanced?.count, 10),
+      color: advanced?.color ?? "rgba(255, 255, 255, 0.2)",
+      duration: toNumber(advanced?.duration, 25),
+      enableGradient: advanced?.enableGradient ?? false,
+      gradientColor1: advanced?.gradientColor1 ?? "#8f94fb",
+      gradientColor2: advanced?.gradientColor2 ?? "#4e54c8",
+      gradientDirection: advanced?.gradientDirection ?? "to left",
+      enableRandomSizes: advanced?.enableRandomSizes ?? false,
+      enableRandomDelays: advanced?.enableRandomDelays ?? false,
+      enableRandomPositions: advanced?.enableRandomPositions ?? false,
     };
-  }, [backgroundColor, backgroundImage, speed, advanced, speedToDuration]);
+  }, [backgroundColor, backgroundImage, speed, advanced]);
 
   /**
    * Effect to initialize and manage the animation
@@ -117,13 +116,13 @@ export function ExpandingSquares({ width = "auto", height = "auto", backgroundCo
     if (!containerRef.current) return;
 
     const settings = buildCurrentSettings();
-    const expandingSquares = ExpandingSquaresPlugin(containerRef.current, settings) as {
+    const floatingSquares = FloatingSquaresPlugin(containerRef.current, settings) as {
       start: () => void;
       clean: () => void;
     };
-    pluginRef.current = expandingSquares;
+    pluginRef.current = floatingSquares;
 
-    expandingSquares.start();
+    floatingSquares.start();
 
     // Setup ResizeObserver to handle container size changes
     const resizeObserver = new ResizeObserver((entries) => {
@@ -132,12 +131,12 @@ export function ExpandingSquares({ width = "auto", height = "auto", backgroundCo
         if (entry.target === containerRef.current && pluginRef.current) {
           pluginRef.current.clean();
           const updatedSettings = buildCurrentSettings();
-          const newPlugin = ExpandingSquaresPlugin(containerRef.current, updatedSettings) as {
+          const newPlugin = FloatingSquaresPlugin(containerRef.current, updatedSettings) as {
             start: () => void;
             clean: () => void;
           };
           pluginRef.current = newPlugin;
-          newPlugin.start();
+          pluginRef.current.start();
           break;
         }
       }
@@ -154,36 +153,34 @@ export function ExpandingSquares({ width = "auto", height = "auto", backgroundCo
     };
   }, [buildCurrentSettings]);
 
-  const contentOverlayStyle: React.CSSProperties = useMemo(
-    () => ({
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      zIndex: 30,
-      pointerEvents: "none",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    }),
-    []
-  );
-
-  const contentWrapperStyle: React.CSSProperties = useMemo(
-    () => ({
-      pointerEvents: "auto",
-      position: "relative",
-      zIndex: 31,
-    }),
-    []
-  );
-
   return (
-    <div ref={containerRef} style={containerStyle} role="presentation" aria-label="Animated expanding squares background">
+    <div ref={containerRef} style={containerStyle} role="presentation" aria-label="Animated floating squares background">
       {children && (
-        <div style={contentOverlayStyle} role="region" aria-label="Content overlay">
-          <div style={contentWrapperStyle}>{children}</div>
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 30,
+            pointerEvents: "none",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          role="region"
+          aria-label="Content overlay"
+        >
+          <div
+            style={{
+              pointerEvents: "auto",
+              position: "relative",
+              zIndex: 31,
+            }}
+          >
+            {children}
+          </div>
         </div>
       )}
     </div>
@@ -191,4 +188,4 @@ export function ExpandingSquares({ width = "auto", height = "auto", backgroundCo
 }
 
 // Export types for users who need them
-export type { Props as ExpandingSquaresProps, AdvancedSettings as ExpandingSquaresAdvancedSettings };
+export type { Props as FloatingSquaresProps, AdvancedSettings as FloatingSquaresAdvancedSettings };

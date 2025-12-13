@@ -1,12 +1,10 @@
 import React, { useEffect, useRef, useMemo, useCallback } from "react";
-// @ts-ignore - JS file export, TypeScript may not recognize it
-import ExpandingSquaresPlugin from "./ExpandingSquaresPlugin.js";
+import MathPatternPlugin from "./MathPatternPlugin.js";
 
 // Simplified interface with all optional settings
 interface Props {
   // Basic settings (most commonly used)
   backgroundColor?: string;
-  backgroundImage?: string | null;
   speed?: number | string;
   width?: string | number | "auto";
   height?: string | number | "auto";
@@ -17,35 +15,22 @@ interface Props {
 }
 
 interface AdvancedSettings {
-  count?: number | string;
-  color?: string;
-  size?: number | string;
-  duration?: number | string;
-  enableBorder?: boolean;
-  borderWidth?: number | string;
+  gridSize?: number | string;
+  pixelSize?: number | string;
+  centerX?: number | string;
+  centerY?: number | string;
+  baseColor?: number | string;
+  colorVariation?: number | string;
 }
 
 /**
- * Expanding Squares Component
- * A React component that creates animated expanding squares background
+ * Math Pattern Animation Component
+ * A React component that creates animated mathematical pattern background using canvas
  */
-export function ExpandingSquares({ width = "auto", height = "auto", backgroundColor = "#08be88", backgroundImage = null, speed = 1, advanced, children }: Props) {
+export function MathPattern({ width = "auto", height = "auto", backgroundColor = "transparent", speed = 0.03, advanced, children }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const pluginRef = useRef<{ start: () => void; clean: () => void } | null>(null);
-
-  /**
-   * Converts speed to duration (speed is inverse - higher speed = lower duration)
-   * @param speedValue - Speed value to convert
-   * @returns Duration in seconds
-   */
-  const speedToDuration = useCallback((speedValue: number | string): number => {
-    const numSpeed = typeof speedValue === "string" ? parseFloat(speedValue) : speedValue;
-    if (isNaN(numSpeed) || numSpeed <= 0) {
-      return 12; // Default duration
-    }
-    // Speed of 1 = duration of 12, speed of 2 = duration of 6, etc.
-    return 12 / numSpeed;
-  }, []);
 
   /**
    * Memoized container style calculation
@@ -93,57 +78,78 @@ export function ExpandingSquares({ width = "auto", height = "auto", backgroundCo
   }, [width, height]);
 
   /**
+   * Memoized canvas style calculation
+   */
+  const canvasStyle = useMemo((): React.CSSProperties => {
+    return {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      display: "block",
+    };
+  }, []);
+
+  /**
    * Builds current settings object for the plugin
    */
   const buildCurrentSettings = useCallback(() => {
-    const duration = advanced?.duration ?? speedToDuration(speed);
+    // Helper to convert string/number to number
+    const toNumber = (value: number | string | undefined, defaultValue: number): number => {
+      if (value === undefined) return defaultValue;
+      const num = typeof value === "string" ? parseFloat(value) : value;
+      return isNaN(num) ? defaultValue : num;
+    };
 
     return {
       backgroundColor,
-      backgroundImage,
-      count: advanced?.count ?? 5,
-      color: advanced?.color ?? "#079e71",
-      size: advanced?.size ?? 10,
-      duration: typeof duration === "string" ? parseFloat(duration) : duration,
-      enableBorder: advanced?.enableBorder ?? true,
-      borderWidth: advanced?.borderWidth ?? 1,
+      speed: toNumber(speed, 0.03),
+      gridSize: toNumber(advanced?.gridSize, 30),
+      pixelSize: toNumber(advanced?.pixelSize, 10),
+      centerX: toNumber(advanced?.centerX, 100),
+      centerY: toNumber(advanced?.centerY, 100),
+      baseColor: toNumber(advanced?.baseColor, 192),
+      colorVariation: toNumber(advanced?.colorVariation, 64),
     };
-  }, [backgroundColor, backgroundImage, speed, advanced, speedToDuration]);
+  }, [backgroundColor, speed, advanced]);
 
   /**
    * Effect to initialize and manage the animation
    */
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!canvasRef.current) return;
 
     const settings = buildCurrentSettings();
-    const expandingSquares = ExpandingSquaresPlugin(containerRef.current, settings) as {
+    const mathPattern = MathPatternPlugin(canvasRef.current, settings) as {
       start: () => void;
       clean: () => void;
     };
-    pluginRef.current = expandingSquares;
+    pluginRef.current = mathPattern;
 
-    expandingSquares.start();
+    mathPattern.start();
 
     // Setup ResizeObserver to handle container size changes
     const resizeObserver = new ResizeObserver((entries) => {
       // Only reinitialize if size actually changed
       for (const entry of entries) {
-        if (entry.target === containerRef.current && pluginRef.current) {
+        if (entry.target === containerRef.current && pluginRef.current && canvasRef.current) {
           pluginRef.current.clean();
           const updatedSettings = buildCurrentSettings();
-          const newPlugin = ExpandingSquaresPlugin(containerRef.current, updatedSettings) as {
+          const newPlugin = MathPatternPlugin(canvasRef.current, updatedSettings) as {
             start: () => void;
             clean: () => void;
           };
           pluginRef.current = newPlugin;
-          newPlugin.start();
+          pluginRef.current.start();
           break;
         }
       }
     });
 
-    resizeObserver.observe(containerRef.current);
+    if (containerRef.current) {
+      resizeObserver.observe(containerRef.current);
+    }
 
     return () => {
       resizeObserver.disconnect();
@@ -154,36 +160,35 @@ export function ExpandingSquares({ width = "auto", height = "auto", backgroundCo
     };
   }, [buildCurrentSettings]);
 
-  const contentOverlayStyle: React.CSSProperties = useMemo(
-    () => ({
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      zIndex: 30,
-      pointerEvents: "none",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    }),
-    []
-  );
-
-  const contentWrapperStyle: React.CSSProperties = useMemo(
-    () => ({
-      pointerEvents: "auto",
-      position: "relative",
-      zIndex: 31,
-    }),
-    []
-  );
-
   return (
-    <div ref={containerRef} style={containerStyle} role="presentation" aria-label="Animated expanding squares background">
+    <div ref={containerRef} style={containerStyle} role="presentation" aria-label="Animated mathematical pattern background">
+      <canvas ref={canvasRef} style={canvasStyle} />
       {children && (
-        <div style={contentOverlayStyle} role="region" aria-label="Content overlay">
-          <div style={contentWrapperStyle}>{children}</div>
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 30,
+            pointerEvents: "none",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          role="region"
+          aria-label="Content overlay"
+        >
+          <div
+            style={{
+              pointerEvents: "auto",
+              position: "relative",
+              zIndex: 31,
+            }}
+          >
+            {children}
+          </div>
         </div>
       )}
     </div>
@@ -191,4 +196,4 @@ export function ExpandingSquares({ width = "auto", height = "auto", backgroundCo
 }
 
 // Export types for users who need them
-export type { Props as ExpandingSquaresProps, AdvancedSettings as ExpandingSquaresAdvancedSettings };
+export type { Props as MathPatternProps, AdvancedSettings as MathPatternAdvancedSettings };

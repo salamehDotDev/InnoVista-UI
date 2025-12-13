@@ -219,7 +219,6 @@ const createExpandingSquaresHTML = (settings) => {
  */
 export default function ExpandingSquaresPlugin(containerElement, animationSettings = {}) {
   if (!containerElement || !(containerElement instanceof HTMLElement)) {
-    console.error("ExpandingSquaresPlugin: Invalid container element provided");
     return {
       start: () => {},
       clean: () => {},
@@ -316,7 +315,6 @@ export default function ExpandingSquaresPlugin(containerElement, animationSettin
       try {
         htmlStructure.remove();
       } catch (error) {
-        console.warn("ExpandingSquaresPlugin: Error removing HTML structure", error);
       }
       htmlStructure = null;
     }

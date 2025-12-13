@@ -948,6 +948,1485 @@ export default function HomePage() {
 
 <br />
 
+---
+
+### 🎈 FloatingBalls
+
+> An animated background component featuring floating balls with connection lines. Create dynamic network visualizations with customizable colors, sizes, and interactive mouse effects.
+
+💡 **Pro Tip:** Use the `advanced` prop to fine-tune the connection lines, ball colors, and enable mouse interaction for an interactive experience.
+
+<br />
+
+#### 📋 Props
+
+| Prop              | Type                            | Default         | Description                       |
+| ----------------- | ------------------------------- | --------------- | --------------------------------- |
+| `width`           | `string \| number \| "auto"`    | `"auto"`        | Width of the component            |
+| `height`          | `string \| number \| "auto"`    | `"auto"`        | Height of the component           |
+| `backgroundColor` | `string`                        | `"transparent"` | Background color                  |
+| `backgroundImage` | `string`                        | `undefined`     | Optional background image URL     |
+| `speed`           | `number \| string`              | `2`             | Animation speed (higher = faster) |
+| `advanced`        | `FloatingBallsAdvancedSettings` | `undefined`     | Advanced customization options    |
+| `children`        | `React.ReactNode`               | -               | Content to display over animation |
+
+<br />
+
+<details>
+<summary>📝 <b>FloatingBallsAdvancedSettings Interface</b></summary>
+
+<br />
+
+```typescript
+interface FloatingBallsAdvancedSettings {
+  colors?: string | { r: number; g: number; b: number }; // Ball colors (hex string or RGB object)
+  radius?: number | string; // Ball radius in pixels
+  count?: number | string; // Number of balls
+  max?: number | string; // Maximum number of balls
+  alphaFade?: number | string; // Alpha fade value for connections
+  linkLineWidth?: number | string; // Connection line width
+  connectionDistance?: number | string; // Maximum distance for connections
+  connectionColor?: string; // Connection line color
+  addMouseInteraction?: boolean; // Enable mouse/touch interaction
+}
+```
+
+</details>
+
+<br />
+
+#### 📚 Usage Examples
+
+<details>
+<summary><b>Basic Usage</b></summary>
+
+<br />
+
+```tsx
+import { FloatingBalls } from "@innovista/ui";
+
+function HeroSection() {
+  return (
+    <FloatingBalls backgroundColor="#0a0a0a" speed={2}>
+      <div className="hero-content">
+        <h1>Network Visualization</h1>
+        <p>Beautiful floating balls with connections</p>
+      </div>
+    </FloatingBalls>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Advanced Example with Custom Settings</b></summary>
+
+<br />
+
+```tsx
+import { FloatingBalls } from "@innovista/ui";
+
+function AdvancedExample() {
+  return (
+    <FloatingBalls
+      width="100%"
+      height="100vh"
+      backgroundColor="#1a1a2e"
+      speed={2}
+      advanced={{
+        colors: "#4e54c8",
+        radius: 3,
+        count: 50,
+        linkLineWidth: 1,
+        connectionDistance: 150,
+        connectionColor: "rgba(78, 84, 200, 0.3)",
+        addMouseInteraction: true,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem", textAlign: "center" }}>
+        <h1>Interactive Network</h1>
+        <p>Move your mouse to interact with the balls</p>
+      </div>
+    </FloatingBalls>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>With RGB Color Object</b></summary>
+
+<br />
+
+```tsx
+import { FloatingBalls } from "@innovista/ui";
+
+function RGBExample() {
+  return (
+    <FloatingBalls
+      backgroundColor="#000000"
+      speed={1.5}
+      advanced={{
+        colors: { r: 255, g: 107, b: 107 }, // Red color
+        count: 60,
+        radius: 4,
+        connectionColor: "rgba(255, 107, 107, 0.4)",
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Custom RGB Colors</h1>
+      </div>
+    </FloatingBalls>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Next.js Integration</b></summary>
+
+<br />
+
+```tsx
+// app/page.tsx or pages/index.tsx
+import { FloatingBalls } from "@innovista/ui";
+
+export default function HomePage() {
+  return (
+    <FloatingBalls
+      width="100%"
+      height="100vh"
+      backgroundColor="#0f0f23"
+      speed={2}
+      advanced={{
+        colors: "#6366f1",
+        count: 40,
+        radius: 3,
+        addMouseInteraction: true,
+      }}
+    >
+      <main style={{ padding: "2rem", textAlign: "center", color: "white" }}>
+        <h1>Next.js + Innovista UI</h1>
+        <p>Beautiful network animations</p>
+      </main>
+    </FloatingBalls>
+  );
+}
+```
+
+</details>
+
+<br />
+
+---
+
+### ✨ FloatingParticles
+
+> A beautiful animated background component featuring floating particles with customizable opacity, scale, and blend modes. Perfect for creating elegant, subtle background effects.
+
+💡 **Pro Tip:** Use the `advanced` prop to enable fade effects, scale animations, and blend modes for more sophisticated visual effects.
+
+<br />
+
+#### 📋 Props
+
+| Prop              | Type                                | Default     | Description                       |
+| ----------------- | ----------------------------------- | ----------- | --------------------------------- |
+| `width`           | `string \| number \| "auto"`        | `"auto"`    | Width of the component            |
+| `height`          | `string \| number \| "auto"`        | `"auto"`    | Height of the component           |
+| `backgroundColor` | `string`                            | `"#021027"` | Background color                  |
+| `backgroundImage` | `string`                            | `undefined` | Optional background image URL     |
+| `speed`           | `number \| string`                  | `1`         | Animation speed (higher = faster) |
+| `advanced`        | `FloatingParticlesAdvancedSettings` | `undefined` | Advanced customization options    |
+| `children`        | `React.ReactNode`                   | -           | Content to display over animation |
+
+<br />
+
+<details>
+<summary>📝 <b>FloatingParticlesAdvancedSettings Interface</b></summary>
+
+<br />
+
+```typescript
+interface FloatingParticlesAdvancedSettings {
+  count?: number | string; // Number of particles
+  size?: number | string; // Particle size in pixels
+  opacity?: number | string; // Particle opacity (0-1)
+  duration?: number | string; // Animation duration
+  delay?: number | string; // Animation delay
+  enableFade?: boolean; // Enable fade animation
+  enableScale?: boolean; // Enable scale animation
+  enableBlendMode?: boolean; // Enable blend mode
+  blendMode?: string; // CSS blend mode (e.g., "screen", "multiply")
+  scaleRange?: [number, number] | [string, string]; // Scale range [min, max]
+  fadeDuration?: number | string; // Fade animation duration
+  scaleDuration?: number | string; // Scale animation duration
+  enableBackgroundImage?: boolean; // Enable background image
+  enableMask?: boolean; // Enable mask effect
+  maskGradient?: string; // Mask gradient CSS
+}
+```
+
+</details>
+
+<br />
+
+#### 📚 Usage Examples
+
+<details>
+<summary><b>Basic Usage</b></summary>
+
+<br />
+
+```tsx
+import { FloatingParticles } from "@innovista/ui";
+
+function HeroSection() {
+  return (
+    <FloatingParticles backgroundColor="#021027" speed={1}>
+      <div className="hero-content">
+        <h1>Elegant Particle Background</h1>
+        <p>Subtle and beautiful animations</p>
+      </div>
+    </FloatingParticles>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Advanced Example with Effects</b></summary>
+
+<br />
+
+```tsx
+import { FloatingParticles } from "@innovista/ui";
+
+function AdvancedExample() {
+  return (
+    <FloatingParticles
+      width="100%"
+      height="100vh"
+      backgroundColor="#021027"
+      speed={1}
+      advanced={{
+        count: 50,
+        size: 3,
+        opacity: 0.8,
+        enableFade: true,
+        enableScale: true,
+        enableBlendMode: true,
+        blendMode: "screen",
+        scaleRange: [0.5, 1.5],
+        fadeDuration: 3,
+        scaleDuration: 4,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem", textAlign: "center" }}>
+        <h1>Advanced Particle Effects</h1>
+        <p>Fade and scale animations enabled</p>
+      </div>
+    </FloatingParticles>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Subtle Background Effect</b></summary>
+
+<br />
+
+```tsx
+import { FloatingParticles } from "@innovista/ui";
+
+function SubtleBackground() {
+  return (
+    <FloatingParticles
+      width="100%"
+      height="600px"
+      backgroundColor="#0a0a0a"
+      speed={0.8}
+      advanced={{
+        count: 30,
+        size: 2,
+        opacity: 0.4,
+        enableFade: true,
+        blendMode: "lighten",
+      }}
+    >
+      <div style={{ padding: "3rem", color: "white" }}>
+        <h2>Subtle Particle Effect</h2>
+        <p>Perfect for content sections</p>
+      </div>
+    </FloatingParticles>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Next.js Integration</b></summary>
+
+<br />
+
+```tsx
+// app/page.tsx or pages/index.tsx
+import { FloatingParticles } from "@innovista/ui";
+
+export default function HomePage() {
+  return (
+    <FloatingParticles
+      width="100%"
+      height="100vh"
+      backgroundColor="#021027"
+      speed={1}
+      advanced={{
+        count: 40,
+        size: 3,
+        opacity: 0.7,
+        enableFade: true,
+        enableScale: true,
+      }}
+    >
+      <main style={{ padding: "2rem", textAlign: "center", color: "white" }}>
+        <h1>Next.js + Innovista UI</h1>
+        <p>Beautiful particle animations</p>
+      </main>
+    </FloatingParticles>
+  );
+}
+```
+
+</details>
+
+<br />
+
+---
+
+### 🔲 FloatingSquares
+
+> An animated background component featuring floating squares with customizable colors, gradients, and random effects. Create modern, geometric visual experiences with smooth animations.
+
+💡 **Pro Tip:** Enable gradient colors and random effects in the `advanced` prop to create more dynamic and varied visual patterns.
+
+<br />
+
+#### 📋 Props
+
+| Prop              | Type                              | Default     | Description                       |
+| ----------------- | --------------------------------- | ----------- | --------------------------------- |
+| `width`           | `string \| number \| "auto"`      | `"auto"`    | Width of the component            |
+| `height`          | `string \| number \| "auto"`      | `"auto"`    | Height of the component           |
+| `backgroundColor` | `string`                          | `"#4e54c8"` | Background color                  |
+| `backgroundImage` | `string`                          | `undefined` | Optional background image URL     |
+| `speed`           | `number \| string`                | `1`         | Animation speed (higher = faster) |
+| `advanced`        | `FloatingSquaresAdvancedSettings` | `undefined` | Advanced customization options    |
+| `children`        | `React.ReactNode`                 | -           | Content to display over animation |
+
+<br />
+
+<details>
+<summary>📝 <b>FloatingSquaresAdvancedSettings Interface</b></summary>
+
+<br />
+
+```typescript
+interface FloatingSquaresAdvancedSettings {
+  count?: number | string; // Number of squares
+  color?: string; // Square color
+  duration?: number | string; // Animation duration
+  enableGradient?: boolean; // Enable gradient colors
+  gradientColor1?: string; // First gradient color
+  gradientColor2?: string; // Second gradient color
+  gradientDirection?: string; // Gradient direction (e.g., "to right", "45deg")
+  enableRandomSizes?: boolean; // Enable random square sizes
+  enableRandomDelays?: boolean; // Enable random animation delays
+  enableRandomPositions?: boolean; // Enable random starting positions
+}
+```
+
+</details>
+
+<br />
+
+#### 📚 Usage Examples
+
+<details>
+<summary><b>Basic Usage</b></summary>
+
+<br />
+
+```tsx
+import { FloatingSquares } from "@innovista/ui";
+
+function HeroSection() {
+  return (
+    <FloatingSquares backgroundColor="#4e54c8" speed={1}>
+      <div className="hero-content">
+        <h1>Geometric Background</h1>
+        <p>Floating squares animation</p>
+      </div>
+    </FloatingSquares>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Advanced Example with Gradient</b></summary>
+
+<br />
+
+```tsx
+import { FloatingSquares } from "@innovista/ui";
+
+function AdvancedExample() {
+  return (
+    <FloatingSquares
+      width="100%"
+      height="100vh"
+      backgroundColor="#4e54c8"
+      speed={1}
+      advanced={{
+        count: 50,
+        color: "#ffffff",
+        duration: 20,
+        enableGradient: true,
+        gradientColor1: "#ff6b6b",
+        gradientColor2: "#4ecdc4",
+        gradientDirection: "45deg",
+        enableRandomSizes: true,
+        enableRandomDelays: true,
+        enableRandomPositions: true,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem", textAlign: "center" }}>
+        <h1>Gradient Squares</h1>
+        <p>Dynamic and colorful animations</p>
+      </div>
+    </FloatingSquares>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Minimal Design</b></summary>
+
+<br />
+
+```tsx
+import { FloatingSquares } from "@innovista/ui";
+
+function MinimalExample() {
+  return (
+    <FloatingSquares
+      width="100%"
+      height="600px"
+      backgroundColor="#1a1a2e"
+      speed={0.8}
+      advanced={{
+        count: 30,
+        color: "rgba(255, 255, 255, 0.1)",
+        enableRandomSizes: false,
+        enableRandomDelays: true,
+      }}
+    >
+      <div style={{ padding: "3rem", color: "white" }}>
+        <h2>Minimal Floating Squares</h2>
+        <p>Clean and elegant design</p>
+      </div>
+    </FloatingSquares>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Next.js Integration</b></summary>
+
+<br />
+
+```tsx
+// app/page.tsx or pages/index.tsx
+import { FloatingSquares } from "@innovista/ui";
+
+export default function HomePage() {
+  return (
+    <FloatingSquares
+      width="100%"
+      height="100vh"
+      backgroundColor="#4e54c8"
+      speed={1}
+      advanced={{
+        count: 40,
+        enableGradient: true,
+        gradientColor1: "#667eea",
+        gradientColor2: "#764ba2",
+        enableRandomSizes: true,
+        enableRandomDelays: true,
+      }}
+    >
+      <main style={{ padding: "2rem", textAlign: "center", color: "white" }}>
+        <h1>Next.js + Innovista UI</h1>
+        <p>Beautiful square animations</p>
+      </main>
+    </FloatingSquares>
+  );
+}
+```
+
+</details>
+
+<br />
+
+---
+
+### 🔷 GeometricAnimation
+
+> An animated background component featuring dynamic geometric shapes (squares, circles, triangles, rectangles) with mouse interaction, particles, and gradient overlays. Create modern, interactive visual experiences with customizable shapes and colors.
+
+💡 **Pro Tip:** Enable mouse interaction and particles in the `advanced` prop to create an interactive, engaging background that responds to user movement.
+
+<br />
+
+#### 📋 Props
+
+| Prop              | Type                                 | Default     | Description                       |
+| ----------------- | ------------------------------------ | ----------- | --------------------------------- |
+| `width`           | `string \| number \| "auto"`         | `"auto"`    | Width of the component            |
+| `height`          | `string \| number \| "auto"`         | `"auto"`    | Height of the component           |
+| `backgroundColor` | `string`                             | `"#1a1a2e"` | Background color                  |
+| `backgroundImage` | `string`                             | `undefined` | Optional background image URL     |
+| `speed`           | `number \| string`                   | `1`         | Animation speed (higher = faster) |
+| `advanced`        | `GeometricAnimationAdvancedSettings` | `undefined` | Advanced customization options    |
+| `children`        | `React.ReactNode`                    | -           | Content to display over animation |
+
+<br />
+
+<details>
+<summary>📝 <b>GeometricAnimationAdvancedSettings Interface</b></summary>
+
+<br />
+
+```typescript
+interface GeometricAnimationAdvancedSettings {
+  count?: number | string; // Number of geometric shapes
+  types?: string[]; // Array of shape types: "square", "circle", "triangle", "rectangle"
+  colors?: string[]; // Array of color values (hex format)
+  enableMouseInteraction?: boolean; // Enable mouse/touch interaction (default: true)
+  mouseSensitivity?: number | string; // Mouse interaction sensitivity (default: 0.05)
+  enableParticles?: boolean; // Enable particle effects (default: true)
+  particleCount?: number | string; // Number of particles (default: 100)
+  enableGradientOverlay?: boolean; // Enable gradient overlay effect (default: true)
+}
+```
+
+</details>
+
+<br />
+
+#### 📚 Usage Examples
+
+<details>
+<summary><b>Basic Usage</b></summary>
+
+<br />
+
+```tsx
+import { GeometricAnimation } from "@innovista/ui";
+
+function HeroSection() {
+  return (
+    <GeometricAnimation backgroundColor="#1a1a2e" speed={1}>
+      <div className="hero-content">
+        <h1>Geometric Background</h1>
+        <p>Dynamic shapes and particles</p>
+      </div>
+    </GeometricAnimation>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Advanced Example with Custom Settings</b></summary>
+
+<br />
+
+```tsx
+import { GeometricAnimation } from "@innovista/ui";
+
+function AdvancedExample() {
+  return (
+    <GeometricAnimation
+      width="100%"
+      height="100vh"
+      backgroundColor="#1a1a2e"
+      speed={1}
+      advanced={{
+        count: 50,
+        types: ["square", "circle", "triangle"],
+        colors: ["#f72585", "#4cc9f0", "#7209b7", "#4361ee"],
+        enableMouseInteraction: true,
+        mouseSensitivity: 0.08,
+        enableParticles: true,
+        particleCount: 150,
+        enableGradientOverlay: true,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem", textAlign: "center" }}>
+        <h1>Interactive Geometric Shapes</h1>
+        <p>Move your mouse to interact with the shapes</p>
+      </div>
+    </GeometricAnimation>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Custom Shape Types</b></summary>
+
+<br />
+
+```tsx
+import { GeometricAnimation } from "@innovista/ui";
+
+function CustomShapesExample() {
+  return (
+    <GeometricAnimation
+      backgroundColor="#0a0a0a"
+      speed={1.2}
+      advanced={{
+        count: 40,
+        types: ["circle", "triangle"], // Only circles and triangles
+        colors: ["#ff6b6b", "#4ecdc4", "#ffe66d"],
+        enableMouseInteraction: true,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Custom Shape Selection</h1>
+        <p>Only circles and triangles</p>
+      </div>
+    </GeometricAnimation>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Minimal Design Without Particles</b></summary>
+
+<br />
+
+```tsx
+import { GeometricAnimation } from "@innovista/ui";
+
+function MinimalExample() {
+  return (
+    <GeometricAnimation
+      width="100%"
+      height="600px"
+      backgroundColor="#1a1a2e"
+      speed={0.8}
+      advanced={{
+        count: 30,
+        enableParticles: false, // Disable particles
+        enableGradientOverlay: false, // Disable gradient
+        enableMouseInteraction: false, // Disable mouse interaction
+      }}
+    >
+      <div style={{ padding: "3rem", color: "white" }}>
+        <h2>Minimal Geometric Design</h2>
+        <p>Clean shapes without extra effects</p>
+      </div>
+    </GeometricAnimation>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Next.js Integration</b></summary>
+
+<br />
+
+```tsx
+// app/page.tsx or pages/index.tsx
+import { GeometricAnimation } from "@innovista/ui";
+
+export default function HomePage() {
+  return (
+    <GeometricAnimation
+      width="100%"
+      height="100vh"
+      backgroundColor="#1a1a2e"
+      speed={1}
+      advanced={{
+        count: 45,
+        types: ["square", "circle", "triangle", "rectangle"],
+        colors: ["#6366f1", "#8b5cf6", "#ec4899", "#f59e0b"],
+        enableMouseInteraction: true,
+        enableParticles: true,
+        particleCount: 120,
+      }}
+    >
+      <main style={{ padding: "2rem", textAlign: "center", color: "white" }}>
+        <h1>Next.js + Innovista UI</h1>
+        <p>Beautiful geometric animations</p>
+      </main>
+    </GeometricAnimation>
+  );
+}
+```
+
+</details>
+
+<br />
+
+---
+
+### 🌈 GradientSliders
+
+> An animated background component featuring smooth gradient sliders that create elegant, flowing color transitions. Perfect for modern, minimalist designs with customizable colors, angles, and opacity effects.
+
+💡 **Pro Tip:** Use the `advanced` prop to customize the gradient angle, enable alternate animation direction, and control opacity for subtle or bold visual effects.
+
+<br />
+
+#### 📋 Props
+
+| Prop              | Type                              | Default     | Description                       |
+| ----------------- | --------------------------------- | ----------- | --------------------------------- |
+| `width`           | `string \| number \| "auto"`      | `"auto"`    | Width of the component            |
+| `height`          | `string \| number \| "auto"`      | `"auto"`    | Height of the component           |
+| `backgroundColor` | `string`                          | `"#eee"`    | Background color                  |
+| `backgroundImage` | `string`                          | `undefined` | Optional background image URL     |
+| `speed`           | `number \| string`                | `1`         | Animation speed (higher = faster) |
+| `advanced`        | `GradientSlidersAdvancedSettings` | `undefined` | Advanced customization options    |
+| `children`        | `React.ReactNode`                 | -           | Content to display over animation |
+
+<br />
+
+<details>
+<summary>📝 <b>GradientSlidersAdvancedSettings Interface</b></summary>
+
+<br />
+
+```typescript
+interface GradientSlidersAdvancedSettings {
+  count?: number | string; // Number of gradient sliders (default: 3)
+  colors?: string[]; // Array of color values (hex format, minimum 2 colors, default: ["#FFEFBA", "#FFFFFF"])
+  angle?: number | string; // Gradient angle in degrees (default: -60)
+  opacity?: number | string; // Opacity value 0-1 (default: 0.5)
+  duration?: number | string; // Animation duration in seconds (default: 3)
+  enableAlternate?: boolean; // Enable alternate animation direction (default: true)
+  enableOpacity?: boolean; // Enable opacity animation (default: true)
+}
+```
+
+</details>
+
+<br />
+
+#### 📚 Usage Examples
+
+<details>
+<summary><b>Basic Usage</b></summary>
+
+<br />
+
+```tsx
+import { GradientSliders } from "@innovista/ui";
+
+function HeroSection() {
+  return (
+    <GradientSliders backgroundColor="#eee" speed={1}>
+      <div className="hero-content">
+        <h1>Gradient Sliders</h1>
+        <p>Elegant flowing gradients</p>
+      </div>
+    </GradientSliders>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Advanced Example with Custom Settings</b></summary>
+
+<br />
+
+```tsx
+import { GradientSliders } from "@innovista/ui";
+
+function AdvancedExample() {
+  return (
+    <GradientSliders
+      width="100%"
+      height="100vh"
+      backgroundColor="#f0f0f0"
+      speed={1}
+      advanced={{
+        count: 4,
+        colors: ["#667eea", "#764ba2", "#f093fb", "#4facfe"],
+        angle: 45,
+        opacity: 0.6,
+        duration: 4,
+        enableAlternate: true,
+        enableOpacity: true,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem", textAlign: "center" }}>
+        <h1>Custom Gradient Sliders</h1>
+        <p>Beautiful color transitions</p>
+      </div>
+    </GradientSliders>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Warm Color Palette</b></summary>
+
+<br />
+
+```tsx
+import { GradientSliders } from "@innovista/ui";
+
+function WarmColorsExample() {
+  return (
+    <GradientSliders
+      backgroundColor="#fff5e6"
+      speed={0.8}
+      advanced={{
+        colors: ["#ff6b6b", "#ffa500", "#ffd700", "#ffefba"],
+        angle: -45,
+        opacity: 0.5,
+        count: 3,
+      }}
+    >
+      <div style={{ padding: "2rem", color: "#333" }}>
+        <h1>Warm Gradient Theme</h1>
+        <p>Cozy and inviting colors</p>
+      </div>
+    </GradientSliders>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Cool Color Palette</b></summary>
+
+<br />
+
+```tsx
+import { GradientSliders } from "@innovista/ui";
+
+function CoolColorsExample() {
+  return (
+    <GradientSliders
+      backgroundColor="#e6f3ff"
+      speed={1.2}
+      advanced={{
+        colors: ["#4facfe", "#00f2fe", "#667eea", "#764ba2"],
+        angle: 60,
+        opacity: 0.7,
+        count: 5,
+        enableAlternate: true,
+      }}
+    >
+      <div style={{ padding: "2rem", color: "#333" }}>
+        <h1>Cool Gradient Theme</h1>
+        <p>Calm and professional</p>
+      </div>
+    </GradientSliders>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Minimal Design</b></summary>
+
+<br />
+
+```tsx
+import { GradientSliders } from "@innovista/ui";
+
+function MinimalExample() {
+  return (
+    <GradientSliders
+      width="100%"
+      height="600px"
+      backgroundColor="#ffffff"
+      speed={0.6}
+      advanced={{
+        count: 2,
+        colors: ["#f0f0f0", "#ffffff"],
+        opacity: 0.3,
+        enableOpacity: false,
+      }}
+    >
+      <div style={{ padding: "3rem", color: "#333" }}>
+        <h2>Minimal Gradient Design</h2>
+        <p>Subtle and elegant</p>
+      </div>
+    </GradientSliders>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Next.js Integration</b></summary>
+
+<br />
+
+```tsx
+// app/page.tsx or pages/index.tsx
+import { GradientSliders } from "@innovista/ui";
+
+export default function HomePage() {
+  return (
+    <GradientSliders
+      width="100%"
+      height="100vh"
+      backgroundColor="#f5f5f5"
+      speed={1}
+      advanced={{
+        count: 3,
+        colors: ["#6366f1", "#8b5cf6", "#ec4899"],
+        angle: -60,
+        opacity: 0.5,
+        duration: 3,
+        enableAlternate: true,
+        enableOpacity: true,
+      }}
+    >
+      <main style={{ padding: "2rem", textAlign: "center", color: "#333" }}>
+        <h1>Next.js + Innovista UI</h1>
+        <p>Beautiful gradient animations</p>
+      </main>
+    </GradientSliders>
+  );
+}
+```
+
+</details>
+
+<br />
+
+---
+
+### 🌌 Interstellar
+
+> An animated background component featuring a mesmerizing interstellar effect with stars, rings, and interactive mouse controls. Create space-themed visual experiences with customizable glow effects, pulse animations, and dynamic text overlays.
+
+💡 **Pro Tip:** Enable mouse interaction, glow effects, and pulse animations in the `advanced` prop to create an immersive, interactive space experience that responds to user movement.
+
+<br />
+
+#### 📋 Props
+
+| Prop              | Type                           | Default     | Description                       |
+| ----------------- | ------------------------------ | ----------- | --------------------------------- |
+| `width`           | `string \| number \| "auto"`   | `"auto"`    | Width of the component            |
+| `height`          | `string \| number \| "auto"`   | `"auto"`    | Height of the component           |
+| `backgroundColor` | `string`                       | `"#000000"` | Background color                  |
+| `backgroundImage` | `string`                       | `undefined` | Optional background image URL     |
+| `speed`           | `number \| string`             | `1`         | Animation speed (higher = faster) |
+| `advanced`        | `InterstellarAdvancedSettings` | `undefined` | Advanced customization options    |
+| `children`        | `React.ReactNode`              | -           | Content to display over animation |
+
+<br />
+
+<details>
+<summary>📝 <b>InterstellarAdvancedSettings Interface</b></summary>
+
+<br />
+
+```typescript
+interface InterstellarAdvancedSettings {
+  ringCount?: number | string; // Number of rings (default: 35)
+  starCount?: number | string; // Number of stars (default: 150)
+  scale?: number | string; // Scale factor (default: 150)
+  spring?: number | string; // Spring physics value (default: 0.95)
+  friction?: number | string; // Friction value (default: 0.95)
+  text1?: string; // First text overlay
+  text2?: string; // Second text overlay
+  enableMouseInteraction?: boolean; // Enable mouse/touch interaction (default: true)
+  enableGlow?: boolean; // Enable glow effect (default: false)
+  glowIntensity?: number | string; // Glow intensity 0-1 (default: 0.3)
+  enablePulse?: boolean; // Enable pulse animation (default: false)
+  pulseSpeed?: number | string; // Pulse animation speed (default: 0.02)
+}
+```
+
+</details>
+
+<br />
+
+#### 📚 Usage Examples
+
+<details>
+<summary><b>Basic Usage</b></summary>
+
+<br />
+
+```tsx
+import { Interstellar } from "@innovista/ui";
+
+function HeroSection() {
+  return (
+    <Interstellar backgroundColor="#000000" speed={1}>
+      <div className="hero-content">
+        <h1>Interstellar Experience</h1>
+        <p>Journey through space</p>
+      </div>
+    </Interstellar>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Advanced Example with All Effects</b></summary>
+
+<br />
+
+```tsx
+import { Interstellar } from "@innovista/ui";
+
+function AdvancedExample() {
+  return (
+    <Interstellar
+      width="100%"
+      height="100vh"
+      backgroundColor="#000000"
+      speed={1}
+      advanced={{
+        ringCount: 40,
+        starCount: 200,
+        scale: 150,
+        spring: 0.95,
+        friction: 0.95,
+        text1: "Welcome",
+        text2: "To Space",
+        enableMouseInteraction: true,
+        enableGlow: true,
+        glowIntensity: 0.5,
+        enablePulse: true,
+        pulseSpeed: 0.03,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem", textAlign: "center" }}>
+        <h1>Interactive Space Experience</h1>
+        <p>Move your mouse to explore</p>
+      </div>
+    </Interstellar>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>With Glow Effect</b></summary>
+
+<br />
+
+```tsx
+import { Interstellar } from "@innovista/ui";
+
+function GlowExample() {
+  return (
+    <Interstellar
+      backgroundColor="#0a0a0a"
+      speed={1.2}
+      advanced={{
+        ringCount: 30,
+        starCount: 180,
+        enableGlow: true,
+        glowIntensity: 0.6,
+        enableMouseInteraction: true,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Glowing Space Effect</h1>
+        <p>Enhanced visual appeal with glow</p>
+      </div>
+    </Interstellar>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>With Pulse Animation</b></summary>
+
+<br />
+
+```tsx
+import { Interstellar } from "@innovista/ui";
+
+function PulseExample() {
+  return (
+    <Interstellar
+      backgroundColor="#000000"
+      speed={0.8}
+      advanced={{
+        ringCount: 35,
+        starCount: 150,
+        enablePulse: true,
+        pulseSpeed: 0.025,
+        enableMouseInteraction: false,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Pulsing Space Animation</h1>
+        <p>Rhythmic pulse effect</p>
+      </div>
+    </Interstellar>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Minimal Design</b></summary>
+
+<br />
+
+```tsx
+import { Interstellar } from "@innovista/ui";
+
+function MinimalExample() {
+  return (
+    <Interstellar
+      width="100%"
+      height="600px"
+      backgroundColor="#000000"
+      speed={0.6}
+      advanced={{
+        ringCount: 20,
+        starCount: 100,
+        enableMouseInteraction: false,
+        enableGlow: false,
+        enablePulse: false,
+      }}
+    >
+      <div style={{ padding: "3rem", color: "white" }}>
+        <h2>Minimal Space Design</h2>
+        <p>Clean and simple interstellar effect</p>
+      </div>
+    </Interstellar>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Next.js Integration</b></summary>
+
+<br />
+
+```tsx
+// app/page.tsx or pages/index.tsx
+import { Interstellar } from "@innovista/ui";
+
+export default function HomePage() {
+  return (
+    <Interstellar
+      width="100%"
+      height="100vh"
+      backgroundColor="#000000"
+      speed={1}
+      advanced={{
+        ringCount: 35,
+        starCount: 150,
+        scale: 150,
+        enableMouseInteraction: true,
+        enableGlow: true,
+        glowIntensity: 0.4,
+        enablePulse: true,
+        pulseSpeed: 0.02,
+      }}
+    >
+      <main style={{ padding: "2rem", textAlign: "center", color: "white" }}>
+        <h1>Next.js + Innovista UI</h1>
+        <p>Beautiful interstellar animations</p>
+      </main>
+    </Interstellar>
+  );
+}
+```
+
+</details>
+
+<br />
+
+---
+
+### 🔢 MathPattern
+
+> An animated background component featuring dynamic mathematical patterns generated using canvas. Create mesmerizing geometric visualizations with customizable grid sizes, pixel dimensions, color variations, and pattern centers.
+
+💡 **Pro Tip:** Adjust the `gridSize`, `pixelSize`, and `colorVariation` in the `advanced` prop to create different pattern densities and visual effects, from subtle textures to bold geometric designs.
+
+<br />
+
+#### 📋 Props
+
+| Prop              | Type                          | Default         | Description                       |
+| ----------------- | ----------------------------- | --------------- | --------------------------------- |
+| `width`           | `string \| number \| "auto"`  | `"auto"`        | Width of the component            |
+| `height`          | `string \| number \| "auto"`  | `"auto"`        | Height of the component           |
+| `backgroundColor` | `string`                      | `"transparent"` | Background color                  |
+| `speed`           | `number \| string`            | `0.03`          | Animation speed (higher = faster) |
+| `advanced`        | `MathPatternAdvancedSettings` | `undefined`     | Advanced customization options    |
+| `children`        | `React.ReactNode`             | -               | Content to display over animation |
+
+<br />
+
+<details>
+<summary>📝 <b>MathPatternAdvancedSettings Interface</b></summary>
+
+<br />
+
+```typescript
+interface MathPatternAdvancedSettings {
+  gridSize?: number | string; // Grid size in pixels (default: 30)
+  pixelSize?: number | string; // Pixel size in pixels (default: 10)
+  centerX?: number | string; // Pattern center X coordinate (default: 100)
+  centerY?: number | string; // Pattern center Y coordinate (default: 100)
+  baseColor?: number | string; // Base color value 0-255 (default: 192)
+  colorVariation?: number | string; // Color variation range (default: 64)
+}
+```
+
+</details>
+
+<br />
+
+#### 📚 Usage Examples
+
+<details>
+<summary><b>Basic Usage</b></summary>
+
+<br />
+
+```tsx
+import { MathPattern } from "@innovista/ui";
+
+function HeroSection() {
+  return (
+    <MathPattern backgroundColor="transparent" speed={0.03}>
+      <div className="hero-content">
+        <h1>Mathematical Patterns</h1>
+        <p>Dynamic geometric visualizations</p>
+      </div>
+    </MathPattern>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Advanced Example with Custom Settings</b></summary>
+
+<br />
+
+```tsx
+import { MathPattern } from "@innovista/ui";
+
+function AdvancedExample() {
+  return (
+    <MathPattern
+      width="100%"
+      height="100vh"
+      backgroundColor="#0a0a0a"
+      speed={0.05}
+      advanced={{
+        gridSize: 40,
+        pixelSize: 12,
+        centerX: 150,
+        centerY: 150,
+        baseColor: 200,
+        colorVariation: 80,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem", textAlign: "center" }}>
+        <h1>Custom Math Pattern</h1>
+        <p>Fine-tuned geometric visualization</p>
+      </div>
+    </MathPattern>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Dense Pattern</b></summary>
+
+<br />
+
+```tsx
+import { MathPattern } from "@innovista/ui";
+
+function DensePatternExample() {
+  return (
+    <MathPattern
+      backgroundColor="#000000"
+      speed={0.04}
+      advanced={{
+        gridSize: 20, // Smaller grid = denser pattern
+        pixelSize: 8,
+        baseColor: 180,
+        colorVariation: 75,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Dense Mathematical Pattern</h1>
+        <p>Intricate geometric design</p>
+      </div>
+    </MathPattern>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Sparse Pattern</b></summary>
+
+<br />
+
+```tsx
+import { MathPattern } from "@innovista/ui";
+
+function SparsePatternExample() {
+  return (
+    <MathPattern
+      backgroundColor="#f5f5f5"
+      speed={0.02}
+      advanced={{
+        gridSize: 60, // Larger grid = sparser pattern
+        pixelSize: 15,
+        baseColor: 220,
+        colorVariation: 35,
+      }}
+    >
+      <div style={{ padding: "2rem", color: "#333" }}>
+        <h1>Subtle Math Pattern</h1>
+        <p>Minimal geometric texture</p>
+      </div>
+    </MathPattern>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>High Contrast Pattern</b></summary>
+
+<br />
+
+```tsx
+import { MathPattern } from "@innovista/ui";
+
+function HighContrastExample() {
+  return (
+    <MathPattern
+      backgroundColor="#ffffff"
+      speed={0.06}
+      advanced={{
+        gridSize: 35,
+        pixelSize: 11,
+        baseColor: 128,
+        colorVariation: 127, // Maximum variation for high contrast
+      }}
+    >
+      <div style={{ padding: "2rem", color: "#333" }}>
+        <h1>High Contrast Pattern</h1>
+        <p>Bold geometric visualization</p>
+      </div>
+    </MathPattern>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Next.js Integration</b></summary>
+
+<br />
+
+```tsx
+// app/page.tsx or pages/index.tsx
+import { MathPattern } from "@innovista/ui";
+
+export default function HomePage() {
+  return (
+    <MathPattern
+      width="100%"
+      height="100vh"
+      backgroundColor="#0a0a0a"
+      speed={0.03}
+      advanced={{
+        gridSize: 30,
+        pixelSize: 10,
+        centerX: 100,
+        centerY: 100,
+        baseColor: 192,
+        colorVariation: 64,
+      }}
+    >
+      <main style={{ padding: "2rem", textAlign: "center", color: "white" }}>
+        <h1>Next.js + Innovista UI</h1>
+        <p>Beautiful mathematical patterns</p>
+      </main>
+    </MathPattern>
+  );
+}
+```
+
+</details>
+
+<br />
+
+---
+
 ## ⚙️ Requirements
 
 | Package       | Version                |
