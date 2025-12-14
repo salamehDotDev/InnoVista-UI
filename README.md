@@ -2427,6 +2427,1007 @@ export default function HomePage() {
 
 ---
 
+### ✨ Particles
+
+> An animated background component featuring dynamic particles with connection lines. Create interactive network visualizations with customizable particle count, colors, sizes, and connection settings. Perfect for modern, tech-focused designs.
+
+💡 **Pro Tip:** Use the `advanced` prop to customize particle appearance, enable/disable connections, and even use custom images as particles for unique visual effects.
+
+<br />
+
+#### 📋 Props
+
+| Prop              | Type                         | Default     | Description                       |
+| ----------------- | ---------------------------- | ----------- | --------------------------------- |
+| `width`           | `string \| number \| "auto"` | `"auto"`    | Width of the component            |
+| `height`          | `string \| number \| "auto"` | `"auto"`    | Height of the component           |
+| `backgroundColor` | `string`                     | `"#2c3e50"` | Background color                  |
+| `speed`           | `number \| string`           | `2`         | Animation speed (higher = faster) |
+| `advanced`        | `ParticlesAdvancedSettings`  | `undefined` | Advanced customization options    |
+| `children`        | `React.ReactNode`            | -           | Content to display over animation |
+
+<br />
+
+<details>
+<summary>📝 <b>ParticlesAdvancedSettings Interface</b></summary>
+
+<br />
+
+```typescript
+interface ParticlesAdvancedSettings {
+  count?: number | string; // Number of particles (default: 30)
+  color?: string; // Particle color (hex format, default: "#e74c3c")
+  size?: number | string; // Particle size in pixels (default: 5)
+  opacity?: number | string; // Particle opacity 0-1 (default: 0.9)
+  connectionDistance?: number | string; // Maximum distance for connections (default: 150)
+  showConnections?: boolean; // Show connection lines between particles (default: true)
+  connectionColor?: string; // Connection line color (hex format, default: "#3498db")
+  connectionOpacity?: number | string; // Connection line opacity 0-1 (default: 0.8)
+  image?: string; // Optional image URL to use as particle shape
+  imageWidth?: number | string; // Image width in pixels (default: 20)
+  imageHeight?: number | string; // Image height in pixels (default: 20)
+}
+```
+
+</details>
+
+<br />
+
+#### 📚 Usage Examples
+
+<details>
+<summary><b>Basic Usage</b></summary>
+
+<br />
+
+```tsx
+import { Particles } from "@innovista/ui";
+
+function HeroSection() {
+  return (
+    <Particles backgroundColor="#2c3e50" speed={2}>
+      <div className="hero-content">
+        <h1>Particle Network</h1>
+        <p>Dynamic connections and animations</p>
+      </div>
+    </Particles>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Advanced Example with Custom Settings</b></summary>
+
+<br />
+
+```tsx
+import { Particles } from "@innovista/ui";
+
+function AdvancedExample() {
+  return (
+    <Particles
+      width="100%"
+      height="100vh"
+      backgroundColor="#1a1a2e"
+      speed={2}
+      advanced={{
+        count: 50,
+        color: "#6366f1",
+        size: 6,
+        opacity: 0.9,
+        connectionDistance: 200,
+        showConnections: true,
+        connectionColor: "#8b5cf6",
+        connectionOpacity: 0.6,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem", textAlign: "center" }}>
+        <h1>Custom Particle Network</h1>
+        <p>Fine-tuned particle system</p>
+      </div>
+    </Particles>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Without Connections</b></summary>
+
+<br />
+
+```tsx
+import { Particles } from "@innovista/ui";
+
+function NoConnectionsExample() {
+  return (
+    <Particles
+      backgroundColor="#0a0a0a"
+      speed={1.5}
+      advanced={{
+        count: 40,
+        color: "#ff6b6b",
+        size: 4,
+        showConnections: false, // Disable connection lines
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Particles Only</h1>
+        <p>No connection lines</p>
+      </div>
+    </Particles>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>With Custom Image Particles</b></summary>
+
+<br />
+
+```tsx
+import { Particles } from "@innovista/ui";
+
+function ImageParticlesExample() {
+  return (
+    <Particles
+      backgroundColor="#000000"
+      speed={2}
+      advanced={{
+        count: 30,
+        image: "/path/to/particle-image.png",
+        imageWidth: 25,
+        imageHeight: 25,
+        showConnections: true,
+        connectionColor: "#ffffff",
+        connectionOpacity: 0.3,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Custom Image Particles</h1>
+        <p>Using images as particle shapes</p>
+      </div>
+    </Particles>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Dense Network</b></summary>
+
+<br />
+
+```tsx
+import { Particles } from "@innovista/ui";
+
+function DenseNetworkExample() {
+  return (
+    <Particles
+      width="100%"
+      height="600px"
+      backgroundColor="#1a1a2e"
+      speed={2.5}
+      advanced={{
+        count: 80, // More particles
+        color: "#4ecdc4",
+        size: 3,
+        connectionDistance: 120, // Shorter distance for denser network
+        connectionColor: "#95e1d3",
+        connectionOpacity: 0.5,
+      }}
+    >
+      <div style={{ padding: "3rem", color: "white" }}>
+        <h2>Dense Particle Network</h2>
+        <p>Many particles with close connections</p>
+      </div>
+    </Particles>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Next.js Integration</b></summary>
+
+<br />
+
+```tsx
+// app/page.tsx or pages/index.tsx
+import { Particles } from "@innovista/ui";
+
+export default function HomePage() {
+  return (
+    <Particles
+      width="100%"
+      height="100vh"
+      backgroundColor="#2c3e50"
+      speed={2}
+      advanced={{
+        count: 40,
+        color: "#e74c3c",
+        size: 5,
+        opacity: 0.9,
+        connectionDistance: 150,
+        showConnections: true,
+        connectionColor: "#3498db",
+        connectionOpacity: 0.8,
+      }}
+    >
+      <main style={{ padding: "2rem", textAlign: "center", color: "white" }}>
+        <h1>Next.js + Innovista UI</h1>
+        <p>Beautiful particle animations</p>
+      </main>
+    </Particles>
+  );
+}
+```
+
+</details>
+
+<br />
+
+---
+
+### 🌧️ Rain
+
+> An animated background component featuring realistic rain drops falling from top to bottom. Create atmospheric, weather-themed visual effects with customizable rain density, drop size, color, and speed.
+
+💡 **Pro Tip:** Adjust the `count` and `rainHeight` in the `advanced` prop to control rain density and drop length. Use darker backgrounds with lighter rain colors for better visibility.
+
+<br />
+
+#### 📋 Props
+
+| Prop              | Type                         | Default         | Description                       |
+| ----------------- | ---------------------------- | --------------- | --------------------------------- |
+| `width`           | `string \| number \| "auto"` | `"auto"`        | Width of the component            |
+| `height`          | `string \| number \| "auto"` | `"auto"`        | Height of the component           |
+| `backgroundColor` | `string`                     | `"transparent"` | Background color                  |
+| `speed`           | `number \| string`           | `3`             | Animation speed (higher = faster) |
+| `advanced`        | `RainAdvancedSettings`       | `undefined`     | Advanced customization options    |
+| `children`        | `React.ReactNode`            | -               | Content to display over animation |
+
+<br />
+
+<details>
+<summary>📝 <b>RainAdvancedSettings Interface</b></summary>
+
+<br />
+
+```typescript
+interface RainAdvancedSettings {
+  color?: string; // Rain drop color (hex format, default: "#3b82f6")
+  rainHeight?: number | string; // Height/length of rain drops in pixels (default: 100)
+  count?: number | string; // Number of rain drops (default: 30)
+  width?: number | string; // Width of rain drops in pixels (default: 1)
+}
+```
+
+</details>
+
+<br />
+
+#### 📚 Usage Examples
+
+<details>
+<summary><b>Basic Usage</b></summary>
+
+<br />
+
+```tsx
+import { Rain } from "@innovista/ui";
+
+function HeroSection() {
+  return (
+    <Rain backgroundColor="transparent" speed={3}>
+      <div className="hero-content">
+        <h1>Rainy Day</h1>
+        <p>Atmospheric rain animation</p>
+      </div>
+    </Rain>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Advanced Example with Custom Settings</b></summary>
+
+<br />
+
+```tsx
+import { Rain } from "@innovista/ui";
+
+function AdvancedExample() {
+  return (
+    <Rain
+      width="100%"
+      height="100vh"
+      backgroundColor="#1a1a2e"
+      speed={3}
+      advanced={{
+        color: "#60a5fa",
+        rainHeight: 120,
+        count: 50,
+        width: 2,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem", textAlign: "center" }}>
+        <h1>Heavy Rain</h1>
+        <p>Dense rain with custom settings</p>
+      </div>
+    </Rain>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Light Rain</b></summary>
+
+<br />
+
+```tsx
+import { Rain } from "@innovista/ui";
+
+function LightRainExample() {
+  return (
+    <Rain
+      backgroundColor="#0a0a0a"
+      speed={2}
+      advanced={{
+        color: "#93c5fd",
+        rainHeight: 80,
+        count: 20, // Fewer drops
+        width: 1,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Light Drizzle</h1>
+        <p>Subtle rain effect</p>
+      </div>
+    </Rain>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Heavy Storm</b></summary>
+
+<br />
+
+```tsx
+import { Rain } from "@innovista/ui";
+
+function HeavyStormExample() {
+  return (
+    <Rain
+      backgroundColor="#000000"
+      speed={5}
+      advanced={{
+        color: "#3b82f6",
+        rainHeight: 150,
+        count: 80, // Many drops
+        width: 2,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Heavy Storm</h1>
+        <p>Intense rain animation</p>
+      </div>
+    </Rain>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Colorful Rain</b></summary>
+
+<br />
+
+```tsx
+import { Rain } from "@innovista/ui";
+
+function ColorfulRainExample() {
+  return (
+    <Rain
+      backgroundColor="#1a1a2e"
+      speed={3}
+      advanced={{
+        color: "#ec4899", // Pink rain
+        rainHeight: 100,
+        count: 40,
+        width: 1.5,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Colorful Rain</h1>
+        <p>Custom colored rain drops</p>
+      </div>
+    </Rain>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Next.js Integration</b></summary>
+
+<br />
+
+```tsx
+// app/page.tsx or pages/index.tsx
+import { Rain } from "@innovista/ui";
+
+export default function HomePage() {
+  return (
+    <Rain
+      width="100%"
+      height="100vh"
+      backgroundColor="#1a1a2e"
+      speed={3}
+      advanced={{
+        color: "#3b82f6",
+        rainHeight: 100,
+        count: 30,
+        width: 1,
+      }}
+    >
+      <main style={{ padding: "2rem", textAlign: "center", color: "white" }}>
+        <h1>Next.js + Innovista UI</h1>
+        <p>Beautiful rain animations</p>
+      </main>
+    </Rain>
+  );
+}
+```
+
+</details>
+
+<br />
+
+---
+
+### ❄️ Snow
+
+> An animated background component featuring realistic snowflakes falling with gentle swaying motion. Create winter-themed, atmospheric visual effects with customizable snowflake density, size, color, and sway speed.
+
+💡 **Pro Tip:** Adjust the `count` and `size` in the `advanced` prop to control snow density and flake size. Use darker backgrounds with white snowflakes for better visibility, or experiment with colored snowflakes for unique effects.
+
+<br />
+
+#### 📋 Props
+
+| Prop              | Type                         | Default         | Description                       |
+| ----------------- | ---------------------------- | --------------- | --------------------------------- |
+| `width`           | `string \| number \| "auto"` | `"auto"`        | Width of the component            |
+| `height`          | `string \| number \| "auto"` | `"auto"`        | Height of the component           |
+| `backgroundColor` | `string`                     | `"transparent"` | Background color                  |
+| `backgroundImage` | `string`                     | `undefined`     | Optional background image URL     |
+| `speed`           | `number \| string`           | `1`             | Animation speed (higher = faster) |
+| `advanced`        | `SnowAdvancedSettings`       | `undefined`     | Advanced customization options    |
+| `children`        | `React.ReactNode`            | -               | Content to display over animation |
+
+<br />
+
+<details>
+<summary>📝 <b>SnowAdvancedSettings Interface</b></summary>
+
+<br />
+
+```typescript
+interface SnowAdvancedSettings {
+  color?: string; // Snowflake color (hex format, default: "#ffffff")
+  size?: number | string; // Snowflake size in pixels (default: 3)
+  count?: number | string; // Number of snowflakes (default: 100)
+  swaySpeed?: number | string; // Horizontal sway speed (default: 0.5)
+}
+```
+
+</details>
+
+<br />
+
+#### 📚 Usage Examples
+
+<details>
+<summary><b>Basic Usage</b></summary>
+
+<br />
+
+```tsx
+import { Snow } from "@innovista/ui";
+
+function HeroSection() {
+  return (
+    <Snow backgroundColor="transparent" speed={1}>
+      <div className="hero-content">
+        <h1>Winter Wonderland</h1>
+        <p>Beautiful snow animation</p>
+      </div>
+    </Snow>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Advanced Example with Custom Settings</b></summary>
+
+<br />
+
+```tsx
+import { Snow } from "@innovista/ui";
+
+function AdvancedExample() {
+  return (
+    <Snow
+      width="100%"
+      height="100vh"
+      backgroundColor="#1a1a2e"
+      speed={1}
+      advanced={{
+        color: "#ffffff",
+        size: 4,
+        count: 150,
+        swaySpeed: 0.7,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem", textAlign: "center" }}>
+        <h1>Heavy Snowfall</h1>
+        <p>Dense snow with custom settings</p>
+      </div>
+    </Snow>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Light Snow</b></summary>
+
+<br />
+
+```tsx
+import { Snow } from "@innovista/ui";
+
+function LightSnowExample() {
+  return (
+    <Snow
+      backgroundColor="#0a0a0a"
+      speed={0.8}
+      advanced={{
+        color: "#e0e0e0",
+        size: 2,
+        count: 50, // Fewer snowflakes
+        swaySpeed: 0.3,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Light Snowfall</h1>
+        <p>Gentle winter scene</p>
+      </div>
+    </Snow>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Blizzard Effect</b></summary>
+
+<br />
+
+```tsx
+import { Snow } from "@innovista/ui";
+
+function BlizzardExample() {
+  return (
+    <Snow
+      backgroundColor="#000000"
+      speed={2}
+      advanced={{
+        color: "#ffffff",
+        size: 5,
+        count: 200, // Many snowflakes
+        swaySpeed: 1.2,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Blizzard</h1>
+        <p>Intense snowstorm animation</p>
+      </div>
+    </Snow>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Colored Snowflakes</b></summary>
+
+<br />
+
+```tsx
+import { Snow } from "@innovista/ui";
+
+function ColoredSnowExample() {
+  return (
+    <Snow
+      backgroundColor="#1a1a2e"
+      speed={1}
+      advanced={{
+        color: "#60a5fa", // Blue snowflakes
+        size: 3,
+        count: 100,
+        swaySpeed: 0.5,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Colored Snow</h1>
+        <p>Unique winter effect</p>
+      </div>
+    </Snow>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>With Background Image</b></summary>
+
+<br />
+
+```tsx
+import { Snow } from "@innovista/ui";
+
+function BackgroundImageExample() {
+  return (
+    <Snow
+      backgroundColor="#1a1a2e"
+      backgroundImage="/winter-landscape.jpg"
+      speed={1}
+      advanced={{
+        color: "#ffffff",
+        count: 80,
+        size: 3,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Winter Scene</h1>
+        <p>Snow over background image</p>
+      </div>
+    </Snow>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Next.js Integration</b></summary>
+
+<br />
+
+```tsx
+// app/page.tsx or pages/index.tsx
+import { Snow } from "@innovista/ui";
+
+export default function HomePage() {
+  return (
+    <Snow
+      width="100%"
+      height="100vh"
+      backgroundColor="#1a1a2e"
+      speed={1}
+      advanced={{
+        color: "#ffffff",
+        size: 3,
+        count: 100,
+        swaySpeed: 0.5,
+      }}
+    >
+      <main style={{ padding: "2rem", textAlign: "center", color: "white" }}>
+        <h1>Next.js + Innovista UI</h1>
+        <p>Beautiful snow animations</p>
+      </main>
+    </Snow>
+  );
+}
+```
+
+</details>
+
+<br />
+
+---
+
+### 💧 WaterDrops
+
+> An animated background component featuring realistic water drops with ripple effects. Create fluid, aquatic visual experiences with customizable drop colors, ripple effects, drop count, and animation speed.
+
+💡 **Pro Tip:** Adjust the `maxDrops` and `rippleSize` in the `advanced` prop to control the density and impact of water drops. Use matching `dropColor` and `rippleColor` for cohesive effects, or contrast them for dynamic visuals.
+
+<br />
+
+#### 📋 Props
+
+| Prop              | Type                         | Default         | Description                       |
+| ----------------- | ---------------------------- | --------------- | --------------------------------- |
+| `width`           | `string \| number \| "auto"` | `"auto"`        | Width of the component            |
+| `height`          | `string \| number \| "auto"` | `"auto"`        | Height of the component           |
+| `backgroundColor` | `string`                     | `"transparent"` | Background color                  |
+| `backgroundImage` | `string`                     | `undefined`     | Optional background image URL     |
+| `speed`           | `number \| string`           | `3`             | Animation speed (higher = faster) |
+| `advanced`        | `WaterDropsAdvancedSettings` | `undefined`     | Advanced customization options    |
+| `children`        | `React.ReactNode`            | -               | Content to display over animation |
+
+<br />
+
+<details>
+<summary>📝 <b>WaterDropsAdvancedSettings Interface</b></summary>
+
+<br />
+
+```typescript
+interface WaterDropsAdvancedSettings {
+  dropColor?: string; // Water drop color (HSL or hex format, default: "hsl(180, 100%, 50%)")
+  rippleColor?: string; // Ripple effect color (HSL or hex format, default: "hsl(180, 100%, 50%)")
+  maxDrops?: number | string; // Maximum number of water drops (default: 30)
+  dropSpeed?: number | string; // Drop falling speed (overrides speed prop if provided)
+  rippleSize?: number | string; // Ripple size in pixels (default: 80)
+  clearColor?: string; // Background clear color with alpha (default: "rgba(0, 0, 0, .1)")
+}
+```
+
+</details>
+
+<br />
+
+#### 📚 Usage Examples
+
+<details>
+<summary><b>Basic Usage</b></summary>
+
+<br />
+
+```tsx
+import { WaterDrops } from "@innovista/ui";
+
+function HeroSection() {
+  return (
+    <WaterDrops backgroundColor="transparent" speed={3}>
+      <div className="hero-content">
+        <h1>Water Drops</h1>
+        <p>Fluid ripple animations</p>
+      </div>
+    </WaterDrops>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Advanced Example with Custom Settings</b></summary>
+
+<br />
+
+```tsx
+import { WaterDrops } from "@innovista/ui";
+
+function AdvancedExample() {
+  return (
+    <WaterDrops
+      width="100%"
+      height="100vh"
+      backgroundColor="#1a1a2e"
+      speed={3}
+      advanced={{
+        dropColor: "hsl(200, 100%, 60%)",
+        rippleColor: "hsl(200, 100%, 60%)",
+        maxDrops: 50,
+        dropSpeed: 4,
+        rippleSize: 100,
+        clearColor: "rgba(0, 0, 0, 0.15)",
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem", textAlign: "center" }}>
+        <h1>Custom Water Drops</h1>
+        <p>Fine-tuned aquatic effects</p>
+      </div>
+    </WaterDrops>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Subtle Effect</b></summary>
+
+<br />
+
+```tsx
+import { WaterDrops } from "@innovista/ui";
+
+function SubtleExample() {
+  return (
+    <WaterDrops
+      backgroundColor="#0a0a0a"
+      speed={2}
+      advanced={{
+        dropColor: "hsl(180, 50%, 40%)",
+        rippleColor: "hsl(180, 50%, 40%)",
+        maxDrops: 20, // Fewer drops
+        rippleSize: 60, // Smaller ripples
+        clearColor: "rgba(0, 0, 0, 0.05)",
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Subtle Water Effect</h1>
+        <p>Gentle aquatic animation</p>
+      </div>
+    </WaterDrops>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Heavy Rain Effect</b></summary>
+
+<br />
+
+```tsx
+import { WaterDrops } from "@innovista/ui";
+
+function HeavyRainExample() {
+  return (
+    <WaterDrops
+      backgroundColor="#000000"
+      speed={5}
+      advanced={{
+        dropColor: "hsl(200, 100%, 70%)",
+        rippleColor: "hsl(200, 100%, 70%)",
+        maxDrops: 80, // Many drops
+        dropSpeed: 6,
+        rippleSize: 120, // Larger ripples
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Heavy Rain Effect</h1>
+        <p>Intense water drop animation</p>
+      </div>
+    </WaterDrops>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Contrasting Colors</b></summary>
+
+<br />
+
+```tsx
+import { WaterDrops } from "@innovista/ui";
+
+function ContrastingColorsExample() {
+  return (
+    <WaterDrops
+      backgroundColor="#1a1a2e"
+      speed={3}
+      advanced={{
+        dropColor: "hsl(0, 100%, 60%)", // Red drops
+        rippleColor: "hsl(180, 100%, 60%)", // Cyan ripples
+        maxDrops: 40,
+        rippleSize: 90,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Colorful Water Drops</h1>
+        <p>Contrasting drop and ripple colors</p>
+      </div>
+    </WaterDrops>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>With Background Image</b></summary>
+
+<br />
+
+```tsx
+import { WaterDrops } from "@innovista/ui";
+
+function BackgroundImageExample() {
+  return (
+    <WaterDrops
+      backgroundColor="#1a1a2e"
+      backgroundImage="/underwater-scene.jpg"
+      speed={3}
+      advanced={{
+        dropColor: "hsl(180, 100%, 50%)",
+        rippleColor: "hsl(180, 100%, 50%)",
+        maxDrops: 30,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Underwater Scene</h1>
+        <p>Water drops over background image</p>
+      </div>
+    </WaterDrops>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Next.js Integration</b></summary>
+
+<br />
+
+```tsx
+// app/page.tsx or pages/index.tsx
+import { WaterDrops } from "@innovista/ui";
+
+export default function HomePage() {
+  return (
+    <WaterDrops
+      width="100%"
+      height="100vh"
+      backgroundColor="#1a1a2e"
+      speed={3}
+      advanced={{
+        dropColor: "hsl(180, 100%, 50%)",
+        rippleColor: "hsl(180, 100%, 50%)",
+        maxDrops: 30,
+        rippleSize: 80,
+        clearColor: "rgba(0, 0, 0, .1)",
+      }}
+    >
+      <main style={{ padding: "2rem", textAlign: "center", color: "white" }}>
+        <h1>Next.js + Innovista UI</h1>
+        <p>Beautiful water drop animations</p>
+      </main>
+    </WaterDrops>
+  );
+}
+```
+
+</details>
+
+<br />
+
+---
+
 ## ⚙️ Requirements
 
 | Package       | Version                |

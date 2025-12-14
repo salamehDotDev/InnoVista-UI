@@ -53,6 +53,22 @@ export { Interstellar } from "./components/backgrounds/interstellarAnimation";
 export { MathPattern } from "./components/backgrounds/mathPatternAnimation";
 // export type { MathPatternProps, MathPatternAdvancedSettings } from "./components/backgrounds/mathPatternAnimation";
 
+// Particles Component
+export { Particles } from "./components/backgrounds/particleAnimation";
+// export type { ParticlesProps, ParticlesAdvancedSettings } from "./components/backgrounds/particleAnimation";
+
+// Rain Component
+export { Rain } from "./components/backgrounds/rainAnimation";
+// export type { RainProps, RainAdvancedSettings } from "./components/backgrounds/rainAnimation";
+
+// Snow Component
+export { Snow } from "./components/backgrounds/snowAnimation";
+// export type { SnowProps, SnowAdvancedSettings } from "./components/backgrounds/snowAnimation";
+
+// WaterDrops Component
+export { WaterDrops } from "./components/backgrounds/waterDropsAnimation";
+// export type { WaterDropsProps, WaterDropsAdvancedSettings } from "./components/backgrounds/waterDropsAnimation";
+
 // Add new components here following the same pattern:
 // export { ComponentName } from "./components/componentFolder";
 // export type { ComponentNameProps } from "./components/componentFolder";
