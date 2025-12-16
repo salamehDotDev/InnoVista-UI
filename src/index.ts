@@ -69,6 +69,10 @@ export { Snow } from "./components/backgrounds/snowAnimation";
 export { WaterDrops } from "./components/backgrounds/waterDropsAnimation";
 // export type { WaterDropsProps, WaterDropsAdvancedSettings } from "./components/backgrounds/waterDropsAnimation";
 
+// Wave Component
+export { Wave } from "./components/backgrounds/waveAnimation";
+// export type { WaveProps, WaveAdvancedSettings } from "./components/backgrounds/waveAnimation";
+
 // Add new components here following the same pattern:
 // export { ComponentName } from "./components/componentFolder";
 // export type { ComponentNameProps } from "./components/componentFolder";

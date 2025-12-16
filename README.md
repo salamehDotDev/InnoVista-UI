@@ -3428,6 +3428,287 @@ export default function HomePage() {
 
 ---
 
+### 🌊 Wave
+
+> An animated background component featuring smooth, rotating wave patterns. Create fluid, ocean-like visual effects with customizable wave count, colors, opacities, rotation, and positioning for dynamic aquatic backgrounds.
+
+💡 **Pro Tip:** Adjust the `count`, `colors`, and `opacities` arrays in the `advanced` prop to create layered wave effects. Use the `rotation`, `radius`, and positioning properties to fine-tune the wave motion and appearance.
+
+<br />
+
+#### 📋 Props
+
+| Prop              | Type                         | Default     | Description                       |
+| ----------------- | ---------------------------- | ----------- | --------------------------------- |
+| `width`           | `string \| number \| "auto"` | `"auto"`    | Width of the component            |
+| `height`          | `string \| number \| "auto"` | `"auto"`    | Height of the component           |
+| `backgroundColor` | `string`                     | `"#0e6cc4"` | Background color                  |
+| `backgroundImage` | `string`                     | `undefined` | Optional background image URL     |
+| `speed`           | `number \| string`           | `1`         | Animation speed (higher = faster) |
+| `advanced`        | `WaveAdvancedSettings`       | `undefined` | Advanced customization options    |
+| `children`        | `React.ReactNode`            | -           | Content to display over animation |
+
+<br />
+
+<details>
+<summary>📝 <b>WaveAdvancedSettings Interface</b></summary>
+
+<br />
+
+```typescript
+interface WaveAdvancedSettings {
+  count?: number | string; // Number of waves (default: 3)
+  colors?: string[]; // Array of wave colors (default: ["#0af", "#77daff", "#000"])
+  opacities?: number[] | string[]; // Array of wave opacities 0-1 (default: [0.4, 0.4, 0.1])
+  durations?: number[] | string[]; // Array of animation durations in ms (default: [7000, 7500, 3000])
+  size?: number | string; // Wave size (default: 1500)
+  waveHeight?: number | string; // Wave height (default: 1300)
+  rotation?: number | string; // Rotation angle in degrees (default: 80)
+  radius?: number | string; // Wave radius (default: 43)
+  offsetX?: number | string; // Horizontal offset (default: -700)
+  originX?: number | string; // Origin X position percentage (default: 50)
+  offsetY?: number | string; // Vertical offset (default: 400)
+  originY?: number | string; // Origin Y position percentage (default: 48)
+}
+```
+
+</details>
+
+<br />
+
+#### 📚 Usage Examples
+
+<details>
+<summary><b>Basic Usage</b></summary>
+
+<br />
+
+```tsx
+import { Wave } from "@innovista/ui";
+
+function HeroSection() {
+  return (
+    <Wave backgroundColor="#0e6cc4" speed={1}>
+      <div className="hero-content">
+        <h1>Ocean Waves</h1>
+        <p>Smooth rotating wave animation</p>
+      </div>
+    </Wave>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Advanced Example with Custom Settings</b></summary>
+
+<br />
+
+```tsx
+import { Wave } from "@innovista/ui";
+
+function AdvancedExample() {
+  return (
+    <Wave
+      width="100%"
+      height="100vh"
+      backgroundColor="#0e6cc4"
+      speed={1}
+      advanced={{
+        count: 4,
+        colors: ["#0af", "#77daff", "#4ecdc4", "#95e1d3"],
+        opacities: [0.5, 0.4, 0.3, 0.2],
+        durations: [8000, 7500, 6000, 5000],
+        size: 1800,
+        waveHeight: 1500,
+        rotation: 90,
+        radius: 50,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem", textAlign: "center" }}>
+        <h1>Custom Wave Animation</h1>
+        <p>Fine-tuned wave effects</p>
+      </div>
+    </Wave>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Subtle Wave Effect</b></summary>
+
+<br />
+
+```tsx
+import { Wave } from "@innovista/ui";
+
+function SubtleExample() {
+  return (
+    <Wave
+      backgroundColor="#1a1a2e"
+      speed={0.8}
+      advanced={{
+        count: 2,
+        colors: ["#3b82f6", "#60a5fa"],
+        opacities: [0.3, 0.2],
+        waveHeight: 1000,
+        rotation: 70,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Subtle Wave Background</h1>
+        <p>Gentle ocean motion</p>
+      </div>
+    </Wave>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Dynamic Multi-Layer Waves</b></summary>
+
+<br />
+
+```tsx
+import { Wave } from "@innovista/ui";
+
+function MultiLayerExample() {
+  return (
+    <Wave
+      backgroundColor="#0a0a0a"
+      speed={1.5}
+      advanced={{
+        count: 5,
+        colors: ["#0af", "#77daff", "#4ecdc4", "#95e1d3", "#ffffff"],
+        opacities: [0.6, 0.5, 0.4, 0.3, 0.1],
+        durations: [10000, 8500, 7000, 6000, 5000],
+        size: 2000,
+        waveHeight: 1800,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Multi-Layer Waves</h1>
+        <p>Complex wave composition</p>
+      </div>
+    </Wave>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Custom Positioning</b></summary>
+
+<br />
+
+```tsx
+import { Wave } from "@innovista/ui";
+
+function CustomPositionExample() {
+  return (
+    <Wave
+      backgroundColor="#0e6cc4"
+      speed={1}
+      advanced={{
+        count: 3,
+        colors: ["#0af", "#77daff", "#000"],
+        offsetX: -500,
+        originX: 30,
+        offsetY: 300,
+        originY: 40,
+        rotation: 100,
+        radius: 60,
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Positioned Waves</h1>
+        <p>Custom wave origin and offset</p>
+      </div>
+    </Wave>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>With Background Image</b></summary>
+
+<br />
+
+```tsx
+import { Wave } from "@innovista/ui";
+
+function BackgroundImageExample() {
+  return (
+    <Wave
+      backgroundColor="#0e6cc4"
+      backgroundImage="/ocean-scene.jpg"
+      speed={1}
+      advanced={{
+        count: 3,
+        colors: ["#0af", "#77daff", "#000"],
+        opacities: [0.3, 0.3, 0.1],
+      }}
+    >
+      <div style={{ color: "white", padding: "2rem" }}>
+        <h1>Ocean Scene</h1>
+        <p>Waves over background image</p>
+      </div>
+    </Wave>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Next.js Integration</b></summary>
+
+<br />
+
+```tsx
+// app/page.tsx or pages/index.tsx
+import { Wave } from "@innovista/ui";
+
+export default function HomePage() {
+  return (
+    <Wave
+      width="100%"
+      height="100vh"
+      backgroundColor="#0e6cc4"
+      speed={1}
+      advanced={{
+        count: 3,
+        colors: ["#0af", "#77daff", "#000"],
+        opacities: [0.4, 0.4, 0.1],
+        size: 1500,
+        waveHeight: 1300,
+        rotation: 80,
+        radius: 43,
+      }}
+    >
+      <main style={{ padding: "2rem", textAlign: "center", color: "white" }}>
+        <h1>Next.js + Innovista UI</h1>
+        <p>Beautiful wave animations</p>
+      </main>
+    </Wave>
+  );
+}
+```
+
+</details>
+
+<br />
+
+---
+
 ## ⚙️ Requirements
 
 | Package       | Version                |
