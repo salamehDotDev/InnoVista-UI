@@ -10,6 +10,9 @@ export default defineConfig({
   treeshake: true,
   minify: false, // Set to true for production minification
   external: ["react", "react-dom"], // Don't bundle peer dependencies
+  loader: {
+    ".js": "jsx", // Treat .js files as JSX to handle JSX syntax
+  },
   outExtension({ format }) {
     return {
       js: format === "cjs" ? ".cjs" : ".js",

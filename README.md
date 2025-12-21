@@ -3709,6 +3709,227 @@ export default function HomePage() {
 
 ---
 
+### 🎴 CardsScroll
+
+> A powerful scroll-based cards animation component with multiple animation directions. Create stunning card-based scroll experiences with vertical, horizontal, 3D, or native CSS scroll-snap animations. Perfect for portfolios, product showcases, and interactive presentations.
+
+💡 **Pro Tip:** Use `direction="snap"` for native CSS scroll-snap (no GSAP required), `direction="3d"` for immersive 3D card effects, or `direction="vertical"`/`"horizontal"` for traditional scroll animations with GSAP.
+
+<br />
+
+#### 📋 Props
+
+| Prop                    | Type                                           | Default       | Description                                                           |
+| ----------------------- | ---------------------------------------------- | ------------- | --------------------------------------------------------------------- |
+| `children`              | `React.ReactNode`                              | -             | React children components (each child becomes a card)                 |
+| `direction`             | `"vertical" \| "horizontal" \| "3d" \| "snap"` | `"vertical"`  | Animation direction                                                   |
+| `backgroundColor`       | `string`                                       | `"#eeeeee"`   | Background color for the container section                            |
+| `lastCardZoomOut`       | `boolean`                                      | `true`        | Whether the last card should zoom out                                 |
+| `enableScrollSnap`      | `boolean`                                      | `false`       | Whether to enable scroll snapping (for GSAP animations)               |
+| `snapType`              | `"mandatory" \| "proximity"`                   | `"mandatory"` | Scroll snap type (only for "snap" direction)                          |
+| `enableKeyboardNav`     | `boolean`                                      | `true`        | Whether to enable keyboard navigation (only for "snap" direction)     |
+| `enableScrollIndicator` | `boolean`                                      | `true`        | Whether to show scroll progress indicator (only for "snap" direction) |
+
+<br />
+
+#### 📚 Usage Examples
+
+<details>
+<summary><b>Basic Usage - Vertical Scroll</b></summary>
+
+<br />
+
+```tsx
+import { CardsScroll } from "@innovista/ui";
+
+function HeroSection() {
+  return (
+    <CardsScroll direction="vertical" backgroundColor="#eeeeee">
+      <div style={{ padding: "2rem", height: "100vh" }}>
+        <h1>Card 1</h1>
+        <p>First card content</p>
+      </div>
+      <div style={{ padding: "2rem", height: "100vh" }}>
+        <h1>Card 2</h1>
+        <p>Second card content</p>
+      </div>
+      <div style={{ padding: "2rem", height: "100vh" }}>
+        <h1>Card 3</h1>
+        <p>Third card content</p>
+      </div>
+    </CardsScroll>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Native CSS Scroll Snap</b></summary>
+
+<br />
+
+```tsx
+import { CardsScroll } from "@innovista/ui";
+
+function SnapScrollExample() {
+  return (
+    <CardsScroll direction="snap" backgroundColor="#1a1a2e" snapType="mandatory" enableKeyboardNav={true} enableScrollIndicator={true}>
+      <div style={{ padding: "2rem", height: "100vh", backgroundColor: "#2a2a3e" }}>
+        <h1 style={{ color: "white" }}>Card 1</h1>
+        <p style={{ color: "white" }}>Smooth scroll snapping</p>
+      </div>
+      <div style={{ padding: "2rem", height: "100vh", backgroundColor: "#3a3a4e" }}>
+        <h1 style={{ color: "white" }}>Card 2</h1>
+        <p style={{ color: "white" }}>Native CSS scroll-snap</p>
+      </div>
+      <div style={{ padding: "2rem", height: "100vh", backgroundColor: "#4a4a5e" }}>
+        <h1 style={{ color: "white" }}>Card 3</h1>
+        <p style={{ color: "white" }}>Keyboard navigation enabled</p>
+      </div>
+    </CardsScroll>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>3D Card Animation</b></summary>
+
+<br />
+
+```tsx
+import { CardsScroll } from "@innovista/ui";
+
+function ThreeDExample() {
+  return (
+    <CardsScroll direction="3d" backgroundColor="#000000" lastCardZoomOut={true}>
+      <div style={{ padding: "2rem", height: "100vh", backgroundColor: "#1a1a2e" }}>
+        <h1 style={{ color: "white" }}>3D Card 1</h1>
+        <p style={{ color: "white" }}>Immersive 3D effect</p>
+      </div>
+      <div style={{ padding: "2rem", height: "100vh", backgroundColor: "#2a2a3e" }}>
+        <h1 style={{ color: "white" }}>3D Card 2</h1>
+        <p style={{ color: "white" }}>Perspective transforms</p>
+      </div>
+      <div style={{ padding: "2rem", height: "100vh", backgroundColor: "#3a3a4e" }}>
+        <h1 style={{ color: "white" }}>3D Card 3</h1>
+        <p style={{ color: "white" }}>Dynamic rotation effects</p>
+      </div>
+    </CardsScroll>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Horizontal Scroll</b></summary>
+
+<br />
+
+```tsx
+import { CardsScroll } from "@innovista/ui";
+
+function HorizontalExample() {
+  return (
+    <CardsScroll direction="horizontal" backgroundColor="#f5f5f5" enableScrollSnap={true} snapType="proximity">
+      <div style={{ padding: "2rem", width: "100vw", height: "100vh" }}>
+        <h1>Horizontal Card 1</h1>
+        <p>Swipe or scroll horizontally</p>
+      </div>
+      <div style={{ padding: "2rem", width: "100vw", height: "100vh" }}>
+        <h1>Horizontal Card 2</h1>
+        <p>Smooth horizontal transitions</p>
+      </div>
+      <div style={{ padding: "2rem", width: "100vw", height: "100vh" }}>
+        <h1>Horizontal Card 3</h1>
+        <p>Perfect for galleries</p>
+      </div>
+    </CardsScroll>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Portfolio Showcase</b></summary>
+
+<br />
+
+```tsx
+import { CardsScroll } from "@innovista/ui";
+
+function PortfolioExample() {
+  const projects = [
+    { title: "Project 1", description: "Amazing project description" },
+    { title: "Project 2", description: "Another great project" },
+    { title: "Project 3", description: "Creative work showcase" },
+  ];
+
+  return (
+    <CardsScroll direction="snap" backgroundColor="#0a0a0a" enableScrollIndicator={true} enableKeyboardNav={true}>
+      {projects.map((project, index) => (
+        <div
+          key={index}
+          style={{
+            padding: "4rem",
+            height: "100vh",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: `hsl(${index * 60}, 50%, 20%)`,
+          }}
+        >
+          <h1 style={{ color: "white", fontSize: "3rem", marginBottom: "1rem" }}>{project.title}</h1>
+          <p style={{ color: "white", fontSize: "1.2rem" }}>{project.description}</p>
+        </div>
+      ))}
+    </CardsScroll>
+  );
+}
+```
+
+</details>
+
+<details>
+<summary><b>Next.js Integration</b></summary>
+
+<br />
+
+```tsx
+// app/page.tsx or pages/index.tsx
+import { CardsScroll } from "@innovista/ui";
+
+export default function HomePage() {
+  return (
+    <CardsScroll direction="vertical" backgroundColor="#eeeeee" lastCardZoomOut={true}>
+      <div style={{ padding: "2rem", height: "100vh" }}>
+        <h1>Welcome</h1>
+        <p>First section</p>
+      </div>
+      <div style={{ padding: "2rem", height: "100vh" }}>
+        <h1>About</h1>
+        <p>Second section</p>
+      </div>
+      <div style={{ padding: "2rem", height: "100vh" }}>
+        <h1>Contact</h1>
+        <p>Third section</p>
+      </div>
+    </CardsScroll>
+  );
+}
+```
+
+</details>
+
+<br />
+
+---
+
 ## ⚙️ Requirements
 
 | Package       | Version                |

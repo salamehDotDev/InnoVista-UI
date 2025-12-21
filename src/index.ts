@@ -73,6 +73,14 @@ export { WaterDrops } from "./components/backgrounds/waterDropsAnimation";
 export { Wave } from "./components/backgrounds/waveAnimation";
 // export type { WaveProps, WaveAdvancedSettings } from "./components/backgrounds/waveAnimation";
 
+// ContentScroll Component
+export { ContentScroll } from "./components/scroll_Animations/ContentScroll";
+// export type { ContentScrollProps } from "./components/scroll_Animations/ContentScroll";
+
+// CardsScroll Component
+export { CardsScroll } from "./components/scroll_Animations/CardsScroll";
+// export type { CardsScrollProps } from "./components/scroll_Animations/CardsScroll";
+
 // Add new components here following the same pattern:
 // export { ComponentName } from "./components/componentFolder";
 // export type { ComponentNameProps } from "./components/componentFolder";
